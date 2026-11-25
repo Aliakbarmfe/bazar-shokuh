@@ -63,30 +63,38 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .card{--c:var(--or);position:relative;padding:18px;border-radius:24px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;animation:in .7s var(--ease) backwards;animation-delay:calc(var(--i)*80ms);transition:transform .5s var(--ease),border-color .4s;display:flex;flex-direction:column}
 @keyframes in{from{opacity:0;transform:translateY(40px) scale(.94)}}
-.card::before{content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:rotate(20deg);animation:gl 6s ease-in-out infinite;animation-delay:calc(var(--i)*.7s);pointer-events:none}
+.card::before{content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:rotate(20deg);animation:gl 6s ease-in-out infinite;animation-delay:calc(var(--i)*.7s)}
 @keyframes gl{0%{left:-60%}35%,100%{left:140%}}
 .card:hover{transform:translateY(-8px);border-color:var(--c)}
 
 /* عکس اصلی روی باکس محصول */
-.img-wrap{position:relative;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;margin-bottom:14px;background:#ffffff0d;border:1px solid #ffffff16;cursor:pointer}
-.img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
-.img-wrap:hover img{transform:scale(1.04)}
-.img-badge{position:absolute;bottom:8px;inset-inline-start:8px;background:#0b0c1ecc;backdrop-filter:blur(6px);border:1px solid #ffffff26;padding:3px 10px;border-radius:99px;font-size:.75rem;font-weight:700;color:#fff}
+.thumb-wrap{position:relative;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;margin-bottom:14px;background:#090a1c;border:1px solid #ffffff14;cursor:pointer}
+.thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s var(--ease)}
+.thumb-wrap:hover img{transform:scale(1.05)}
+.extra-badge{position:absolute;bottom:8px;inset-inline-end:8px;background:#0b0c1ecc;backdrop-filter:blur(6px);border:1px solid #ffffff26;color:#fff;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:99px;pointer-events:none}
 
 .top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.av{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--c);color:#12102b;font-weight:900;font-size:1.2rem;flex:none;animation:bob 4s ease-in-out infinite}
+.av{width:44px;height:44px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:var(--c);color:#12102b;font-weight:900;font-size:1.15rem;animation:bob 4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
 .card h3{font-size:1.05rem;line-height:1.4}.card small{color:var(--mute)}
-.desc{color:var(--mute);font-size:.86rem;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.ms{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.ms span{font-size:.78rem;padding:3px 10px;border-radius:99px;background:#ffffff12}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
-.pr b{font-size:1.1rem}.pr small{margin-inline-start:4px;color:var(--mute);font-size:.82rem}
+.desc{color:var(--mute);font-size:.86rem;line-height:1.65;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:8px}
+.pr b{font-size:1.1rem}.pr small{margin-inline-start:4px;color:var(--mute)}
 .buy{border:0;cursor:pointer;padding:10px 20px;border-radius:12px;font-weight:900;background:var(--c);color:#12102b;transition:.4s var(--ease)}
 .buy:hover{transform:scale(1.08) rotate(-2deg);box-shadow:0 0 24px var(--c)}
+.status-box{grid-column:1/-1;text-align:center;padding:44px 18px;border-radius:22px;background:#ffffff08;border:1px dashed #ffffff22;color:var(--mute)}
 
-.state-box{grid-column:1/-1;text-align:center;padding:44px 18px;border-radius:22px;background:#ffffff08;border:1px solid #ffffff14;color:var(--mute)}
-.state-box.err{color:#ff8ea8;border-color:#ff3d8155}
+/* گالری عکس‌های اضافی با کلیک روی عکس اصلی */
+.gal-ov{position:fixed;inset:0;z-index:70;display:none;place-items:center;padding:16px;background:#04050ee6;backdrop-filter:blur(10px)}
+.gal-ov.show{display:grid}
+.gal-box{position:relative;width:min(680px,100%);background:linear-gradient(170deg,#1d1b42,#0d0d29);border:1px solid #ffffff26;border-radius:24px;padding:20px;box-shadow:0 24px 60px #000a}
+.gal-main{width:100%;max-height:58svh;object-fit:contain;border-radius:16px;background:#070817;display:block;margin-bottom:14px}
+.gal-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.gal-thumbs img{width:68px;height:68px;object-fit:cover;border-radius:12px;cursor:pointer;opacity:.55;border:2px solid transparent;flex-shrink:0;transition:.25s}
+.gal-thumbs img.active,.gal-thumbs img:hover{opacity:1;border-color:var(--te)}
+.gal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.gal-title{font-weight:900;font-size:1.05rem}
+.gal-close{width:36px;height:36px;border-radius:50%;border:0;background:#ffffff1a;cursor:pointer;font-size:1.1rem}
 
 .how{max-width:900px;margin:auto;padding:60px 6vw 90px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
 .how div{padding:22px 14px;border-radius:22px;background:#ffffff0a;border:1px solid #ffffff14}
@@ -94,7 +102,6 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .how div:nth-child(2) svg{animation-delay:-1.3s;stroke:var(--or)}.how div:nth-child(3) svg{animation-delay:-2.6s;stroke:var(--pk)}
 .how b{display:block}.how small{color:var(--mute)}
 footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe-area-inset-bottom));border-top:1px solid #ffffff12;font-size:.9rem}
-
 /* modal */
 .ov{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:#05061299;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .4s}
 .ov.show{opacity:1;pointer-events:auto}
@@ -109,13 +116,6 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 .fld{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:#ffffff0f;margin-bottom:10px}
 .fld small{display:block;color:var(--mute);font-size:.75rem}.fld b{font-size:1.05rem;letter-spacing:1px;direction:ltr;display:block;text-align:right;word-break:break-all}
 .cp{flex:none;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;background:var(--te);color:#06221d;transition:.3s}.cp.ok{background:var(--or);color:#1a0b00;transform:scale(1.08)}
-
-/* گالری عکس‌های اضافی */
-.gal-main{width:100%;max-height:52svh;object-fit:contain;border-radius:18px;background:#090a1a;margin-bottom:12px;display:block}
-.gal-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-.gal-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:12px;border:2px solid transparent;cursor:pointer;flex:none;opacity:.7;transition:.25s}
-.gal-thumbs img.active,.gal-thumbs img:hover{opacity:1;border-color:var(--te)}
-
 .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;translate:-50% 140px;background:var(--te);color:#06221d;font-weight:700;padding:11px 22px;border-radius:12px;transition:translate .5s var(--ease);z-index:80}.toast.show{translate:-50% 0}
 @media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
@@ -150,7 +150,7 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 <div class="tick" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section class="mk" id="mk">
-<h2>آگهی‌ها</h2><p>یک بخش را انتخاب کنید و روی «خرید» بزنید؛ برای دیدن عکس‌های بیشتر روی عکس محصول کلیک کنید.</p>
+<h2>آگهی‌ها</h2><p>یک بخش را انتخاب کنید؛ برای دیدن عکس‌های اضافی روی عکس بزنید و برای خرید «خرید» را بزنید.</p>
 <div class="tabs" id="tabs" role="tablist"><div class="ind" id="ind"></div></div>
 <div class="grid" id="grid"></div>
 </section>
@@ -163,6 +163,18 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 
 <footer>این سایت وابسته به روبیکا نیست</footer>
 
+<!-- گالری نمایش عکس اصلی و عکس‌های اضافی -->
+<div class="gal-ov" id="galOv" aria-hidden="true">
+  <div class="gal-box">
+    <div class="gal-head">
+      <div class="gal-title" id="galTitle">تصاویر محصول</div>
+      <button class="gal-close" id="galClose" aria-label="بستن گالری">✕</button>
+    </div>
+    <img class="gal-main" id="galMain" src="" alt="تصویر محصول">
+    <div class="gal-thumbs" id="galThumbs"></div>
+  </div>
+</div>
+
 <!-- مودال خرید -->
 <div class="ov" id="ov" aria-hidden="true"><div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt"><button class="x" id="x" aria-label="بستن">✕</button>
 <h3 id="mt"></h3><div class="sub" id="ms"></div>
@@ -172,23 +184,14 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 <div class="fld"><div><small>شماره کارت</small><b id="cd"></b></div><button class="cp" data-k="card">کپی</button></div>
 <div class="fld"><div><small>آیدی روبیکا</small><b id="rid"></b></div><button class="cp" data-k="id">کپی</button></div>
 </div></div>
-
-<!-- مودال گالری عکس‌های اضافی -->
-<div class="ov" id="galOv" aria-hidden="true"><div class="md" id="galMd" role="dialog" aria-modal="true" aria-labelledby="galTitle"><button class="x" id="galX" aria-label="بستن">✕</button>
-<h3 id="galTitle"></h3><div class="sub" id="galSub"></div>
-<img class="gal-main" id="galMain" alt="تصویر محصول">
-<div class="gal-thumbs" id="galThumbs"></div>
-</div></div>
-
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-const FALLBACK_CARD = '6037-9912-3478-5601';
-const FALLBACK_RID  = '@rubi_shop_demo';
-const FALLBACK_IMG  = 'https://via.placeholder.com/600x375/1b1a3d/f3f1ff?text=No+Image';
+const DEFAULT_CARD = '6037-9912-3478-5601';
+const DEFAULT_RID  = '@rubi_shop_demo';
+const FALLBACK_IMG = 'https://via.placeholder.com/600x380/141333/f3f1ff?text=No+Image';
 
 const $ = id => document.getElementById(id);
-const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
 const IC = {
   g: '<circle cx="9" cy="9" r="3.500"/><circle cx="17" cy="10" r="2.800"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3-1 6 1 6 5"/>',
@@ -197,126 +200,110 @@ const IC = {
   b: '<path d="M4 9h16l-1.500 11h-13zM8 9a4 4 0 0 1 8 0"/>'
 };
 
-// کلیدها دقیقاً مطابق مسیرهای Firebase Realtime Database: group, channel, page, market
+/* dbKey دقیقاً با کلیدهای ذخیره شده در فایربیس و پنل ادمین هماهنگ است */
 const S = [
-  { key: 'group',   k: 'g', n: 'گروه',  c1: '#ff7a1a', c2: '#ff3d81', col: '#ff7a1a' },
-  { key: 'channel', k: 'c', n: 'کانال', c1: '#8a5cff', c2: '#ff3d81', col: '#8a5cff' },
-  { key: 'page',    k: 'p', n: 'پیج',   c1: '#2ee6c5', c2: '#8a5cff', col: '#2ee6c5' },
-  { key: 'market',  k: 'b', n: 'بازار', c1: '#ffb347', c2: '#ff7a1a', col: '#ffb347' }
+  { k: 'g', dbKey: 'group',   n: 'گروه',  c1: '#ff7a1a', c2: '#ff3d81', col: '#ff7a1a' },
+  { k: 'c', dbKey: 'channel', n: 'کانال', c1: '#8a5cff', c2: '#ff3d81', col: '#8a5cff' },
+  { k: 'p', dbKey: 'page',    n: 'پیج',   c1: '#2ee6c5', c2: '#8a5cff', col: '#2ee6c5' },
+  { k: 'b', dbKey: 'market',  n: 'بازار', c1: '#ffb347', c2: '#ff7a1a', col: '#ffb347' }
 ];
 
-const cache = {}; // کش داده‌های هر بخش از Firebase
 let cur = 0;
+let currentList = [];
+let activeCard = DEFAULT_CARD;
+let activeRid = DEFAULT_RID;
 
-$('bubs').innerHTML = Array.from({length:12}, (_,i) =>
-  `<i class="bub" style="--s:${20+Math.random()*34}px;--x:${Math.random()*95}%;--c:${['#ff7a1a','#2ee6c5','#8a5cff','#ff3d81'][i%4]};--d:${16+Math.random()*18}s;--l:${-Math.random()*30}s"></i>`
+$('bubs').innerHTML = Array.from({ length: 12 }, (_, i) =>
+  `<i class="bub" style="--s:${20 + Math.random() * 34}px;--x:${Math.random() * 95}%;--c:${['#ff7a1a', '#2ee6c5', '#8a5cff', '#ff3d81'][i % 4]};--d:${16 + Math.random() * 18}s;--l:${-Math.random() * 30}s"></i>`
 ).join('');
 
-const W = ['💬 گروه','📢 کانال','👤 پیج','🛒 بازار','✅ معامله امن','⚡ تحویل سریع'];
-$('track').innerHTML = [...W,...W,...W,...W].map(w => `<span>${w}</span>`).join('');
+const W = ['💬 گروه', '📢 کانال', '👤 پیج', '🛒 بازار', '✅ معامله امن', '⚡ تحویل سریع'];
+$('track').innerHTML = [...W, ...W, ...W, ...W].map(w => `<span>${w}</span>`).join('');
 
-$('tabs').insertAdjacentHTML('beforeend', S.map((s,i) =>
-  `<button class="tab${i?'':' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`
+$('tabs').insertAdjacentHTML('beforeend', S.map((s, i) =>
+  `<button class="tab${i ? '' : ' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`
 ).join(''));
 
-async function fetchCategoryFromFirebase(catKey) {
-  const res = await fetch(`/api/products?category=${encodeURIComponent(catKey)}`);
-  if (!res.ok) throw new Error('خطا در دریافت اطلاعات از سرور');
-  const data = await res.json();
-  return Array.isArray(data.items) ? data.items : [];
-}
-
-function renderItems(s, items) {
-  if (!items.length) {
-    $('grid').innerHTML = `<div class="state-box">در بخش «${escapeHtml(s.n)}» هنوز محصولی ثبت نشده است.</div>`;
-    return;
-  }
-
-  $('grid').innerHTML = items.map((it, j) => {
-    const mainImg = it.mainImage || FALLBACK_IMG;
-    const extras = Array.isArray(it.extraImages) ? it.extraImages.filter(Boolean) : [];
-    const allImgs = [mainImg, ...extras];
-    const hasExtras = extras.length > 0;
-
-    return `
-      <article class="card" style="--c:${s.col};--i:${j}">
-        <div class="img-wrap" data-j="${j}" title="${hasExtras ? 'برای دیدن عکس‌های اضافی کلیک کنید' : 'نمایش تصویر'}">
-          <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(it.name || s.n)}" loading="lazy">
-          ${hasExtras ? `<span class="img-badge">+${extras.length} عکس اضافی</span>` : ''}
-        </div>
-        <div class="top">
-          <div class="av">${escapeHtml(s.n[0])}</div>
-          <div>
-            <h3>${escapeHtml(it.name || 'بدون عنوان')}</h3>
-            <small>${escapeHtml(s.n)}${it.cardName ? ' · ' + escapeHtml(it.cardName) : ''}</small>
-          </div>
-        </div>
-        ${it.description ? `<p class="desc">${escapeHtml(it.description)}</p>` : ''}
-        <div class="ms">
-          <span>${escapeHtml(s.n)}</span>
-          ${it.ownerId ? `<span>${escapeHtml(it.ownerId)}</span>` : ''}
-        </div>
-        <div class="row">
-          <div class="pr"><b>${escapeHtml(it.price || 'توافقی')}</b><small>تومان</small></div>
-          <button class="buy" data-j="${j}">خرید</button>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-async function show(i, forceRefresh = false) {
+async function show(i) {
   cur = i;
   const s = S[i];
-  $('ind').style.insetInlineStart = `calc(${i*25}% + 6px)`;
+  $('ind').style.insetInlineStart = `calc(${i * 25}% + 6px)`;
   $('tabs').style.setProperty('--c1', s.c1);
   $('tabs').style.setProperty('--c2', s.c2);
-  [...document.querySelectorAll('.tab')].forEach((t,j) => t.classList.toggle('on', j === i));
+  [...document.querySelectorAll('.tab')].forEach((t, j) => t.classList.toggle('on', j === i));
 
-  if (!forceRefresh && cache[s.key]) {
-    renderItems(s, cache[s.key]);
-    return;
-  }
-
-  $('grid').innerHTML = `<div class="state-box">در حال دریافت اطلاعات «${escapeHtml(s.n)}» از دیتابیس...</div>`;
+  $('grid').innerHTML = `<div class="status-box">در حال دریافت آگهی‌های ${s.n} از دیتابیس...</div>`;
 
   try {
-    const items = await fetchCategoryFromFirebase(s.key);
-    cache[s.key] = items;
-    if (cur === i) renderItems(s, items);
-  } catch (err) {
-    if (cur === i) {
-      $('grid').innerHTML = `<div class="state-box err">خطا در دریافت اطلاعات «${escapeHtml(s.n)}»: ${escapeHtml(err.message)}</div>`;
+    const res = await fetch(`/api/db?category=${encodeURIComponent(s.dbKey)}`);
+    const raw = await res.json();
+
+    if (!res.ok) {
+      throw new Error(raw?.error || 'خطا در دریافت اطلاعات');
     }
+
+    const entries = raw && typeof raw === 'object' ? Object.entries(raw) : [];
+    // جدیدترین‌ها در ابتدا
+    currentList = entries.reverse().map(([id, item]) => ({
+      id,
+      name: item?.name || 'بدون عنوان',
+      price: item?.price || 'توافقی',
+      description: item?.description || '',
+      mainImage: item?.mainImage || FALLBACK_IMG,
+      extraImages: Array.isArray(item?.extraImages) ? item.extraImages.filter(Boolean) : [],
+      cardNumber: item?.cardNumber || DEFAULT_CARD,
+      cardName: item?.cardName || '',
+      ownerId: item?.ownerId || DEFAULT_RID
+    }));
+
+    if (!currentList.length) {
+      $('grid').innerHTML = `<div class="status-box">هنوز آگهی در بخش «${s.n}» ثبت نشده است.</div>`;
+      return;
+    }
+
+    $('grid').innerHTML = currentList.map((it, j) => {
+      const extrasCount = it.extraImages.length;
+      return `
+        <article class="card" style="--c:${s.col};--i:${j}">
+          <div class="thumb-wrap" data-idx="${j}" title="برای مشاهده عکس‌های اضافی کلیک کنید">
+            <img src="${it.mainImage}" alt="${it.name}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'">
+            ${extrasCount > 0 ? `<span class="extra-badge">+${extrasCount} عکس اضافی</span>` : `<span class="extra-badge">مشاهده عکس</span>`}
+          </div>
+          <div class="top">
+            <div class="av">${s.n[0]}</div>
+            <div><h3>${it.name}</h3><small>${s.n}</small></div>
+          </div>
+          ${it.description ? `<p class="desc">${it.description}</p>` : ''}
+          <div class="row">
+            <div class="pr"><b>${it.price}</b></div>
+            <button class="buy" data-j="${j}">خرید</button>
+          </div>
+        </article>
+      `;
+    }).join('');
+  } catch (err) {
+    $('grid').innerHTML = `<div class="status-box" style="color:#ff7a1a">خطا در بارگذاری اطلاعات: ${err.message}</div>`;
   }
 }
 
-document.querySelectorAll('.tab').forEach(t => {
-  t.onclick = () => show(+t.dataset.i);
-});
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => show(+t.dataset.i));
 show(0);
 
-/* گالری عکس‌های اضافی با کلیک روی عکس اصلی */
-let lastFocus;
-function openGallery(it, s) {
-  const mainImg = it.mainImage || FALLBACK_IMG;
-  const extras = Array.isArray(it.extraImages) ? it.extraImages.filter(Boolean) : [];
-  const photos = [mainImg, ...extras];
+/* گالری نمایش عکس‌های اضافی با کلیک روی عکس اصلی */
+function openGallery(idx) {
+  const it = currentList[idx];
+  if (!it) return;
+  const allImgs = [it.mainImage, ...it.extraImages].filter(Boolean);
+  $('galTitle').textContent = it.name;
+  $('galMain').src = allImgs[0] || FALLBACK_IMG;
 
-  $('galMd').style.setProperty('--c', s.col);
-  $('galTitle').textContent = it.name || 'تصاویر محصول';
-  $('galSub').textContent = extras.length
-    ? `عکس اصلی و ${extras.length} عکس اضافی`
-    : 'نمایش عکس اصلی محصول';
-
-  $('galMain').src = photos[0];
-  $('galThumbs').innerHTML = photos.map((url, idx) =>
-    `<img src="${escapeHtml(url)}" class="${idx === 0 ? 'active' : ''}" data-idx="${idx}" alt="تصویر ${idx + 1}">`
+  $('galThumbs').innerHTML = allImgs.map((url, k) =>
+    `<img src="${url}" class="${k === 0 ? 'active' : ''}" data-src="${url}" alt="تصویر ${k + 1}" onerror="this.src='${FALLBACK_IMG}'">`
   ).join('');
 
   $('galThumbs').querySelectorAll('img').forEach(imgEl => {
     imgEl.onclick = () => {
-      $('galMain').src = photos[+imgEl.dataset.idx];
+      $('galMain').src = imgEl.dataset.src;
       $('galThumbs').querySelectorAll('img').forEach(x => x.classList.remove('active'));
       imgEl.classList.add('active');
     };
@@ -324,7 +311,6 @@ function openGallery(it, s) {
 
   $('galOv').classList.add('show');
   $('galOv').setAttribute('aria-hidden', 'false');
-  $('galX').focus();
   document.body.style.overflow = 'hidden';
 }
 
@@ -332,68 +318,59 @@ function closeGallery() {
   $('galOv').classList.remove('show');
   $('galOv').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
-  lastFocus && lastFocus.focus();
 }
 
-$('galX').onclick = closeGallery;
-$('galOv').onclick = e => { if (e.target === $('galOv')) closeGallery(); };
+$('grid').addEventListener('click', e => {
+  const thumb = e.target.closest('.thumb-wrap');
+  if (thumb) {
+    openGallery(+thumb.dataset.idx);
+    return;
+  }
 
-/* مودال خرید */
-let activeCard = null;
-function openBuyModal(it, s) {
-  activeCard = it.cardNumber || FALLBACK_CARD;
-  activeRid  = it.ownerId || FALLBACK_RID;
+  const b = e.target.closest('.buy');
+  if (!b) return;
+  last = b;
+  const s = S[cur];
+  const it = currentList[+b.dataset.j];
+  if (!it) return;
+
+  activeCard = it.cardNumber || DEFAULT_CARD;
+  activeRid = it.ownerId || DEFAULT_RID;
 
   $('md').style.setProperty('--c', s.col);
-  $('mt').textContent = it.name || '';
+  $('mt').textContent = it.name;
   $('ms').textContent = `${s.n}${it.cardName ? ' · به نام: ' + it.cardName : ''}`;
   $('mn').innerHTML = it.description
-    ? escapeHtml(it.description)
+    ? `${it.description}<br><small style="color:var(--mute)">برای خرید، مبلغ را واریز و رسید را در روبیکا ارسال کنید.</small>`
     : 'برای خرید، مبلغ را به <b>شماره کارت</b> زیر واریز کنید و سپس <b>رسید</b> را از طریق روبیکا به <b>آیدی</b> زیر بفرستید.';
-  $('pp').textContent = (it.price || 'توافقی') + ' تومان';
+
+  $('pp').textContent = it.price;
   $('cd').textContent = activeCard;
   $('rid').textContent = activeRid;
-
   $('ov').classList.add('show');
   $('ov').setAttribute('aria-hidden', 'false');
   $('x').focus();
   document.body.style.overflow = 'hidden';
-}
-
-let activeCard = FALLBACK_CARD;
-let activeRid  = FALLBACK_RID;
-
-$('grid').addEventListener('click', e => {
-  const s = S[cur];
-  const items = cache[s.key] || [];
-
-  const imgWrap = e.target.closest('.img-wrap');
-  if (imgWrap) {
-    lastFocus = imgWrap;
-    const it = items[+imgWrap.dataset.j];
-    if (it) openGallery(it, s);
-    return;
-  }
-
-  const buyBtn = e.target.closest('.buy');
-  if (buyBtn) {
-    lastFocus = buyBtn;
-    const it = items[+buyBtn.dataset.j];
-    if (it) openBuyModal(it, s);
-  }
 });
 
-const closeBuy = () => {
+$('galClose').onclick = closeGallery;
+$('galOv').onclick = e => { if (e.target === $('galOv')) closeGallery(); };
+
+/* modal خرید */
+let last;
+const close = () => {
   $('ov').classList.remove('show');
   $('ov').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
-  lastFocus && lastFocus.focus();
+  last && last.focus();
 };
-
-$('x').onclick = closeBuy;
-$('ov').onclick = e => { if (e.target === $('ov')) closeBuy(); };
+$('x').onclick = close;
+$('ov').onclick = e => { if (e.target === $('ov')) close(); };
 addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeBuy(); closeGallery(); }
+  if (e.key === 'Escape') {
+    close();
+    closeGallery();
+  }
 });
 
 let tt;
@@ -407,8 +384,9 @@ const say = m => {
 
 document.querySelectorAll('.cp').forEach(b => b.onclick = async () => {
   const v = b.dataset.k === 'card' ? activeCard.replace(/-/g, '') : activeRid;
-  try { await navigator.clipboard.writeText(v); }
-  catch (_) {
+  try {
+    await navigator.clipboard.writeText(v);
+  } catch (_) {
     const a = document.createElement('textarea');
     a.value = v;
     document.body.appendChild(a);
@@ -419,7 +397,10 @@ document.querySelectorAll('.cp').forEach(b => b.onclick = async () => {
   b.classList.add('ok');
   b.textContent = 'کپی شد ✓';
   say('کپی شد');
-  setTimeout(() => { b.classList.remove('ok'); b.textContent = 'کپی'; }, 1500);
+  setTimeout(() => {
+    b.classList.remove('ok');
+    b.textContent = 'کپی';
+  }, 1500);
 });
 </script>
 </body>
