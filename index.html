@@ -235,26 +235,37 @@ async function show(i) {
   $('grid').innerHTML = `<div class="status-box">در حال دریافت آگهی‌های ${s.n} از دیتابیس...</div>`;
 
   try {
-    const res = await fetch(`/api/db?category=${encodeURIComponent(s.dbKey)}`);
+    const res = await fetch(`/api/db?category=${encodeURIComponent(s.dbKey)}&_t=${Date.now()}`, {
+      cache: 'no-store'
+    });
     const raw = await res.json();
 
     if (!res.ok) {
       throw new Error(raw?.error || 'خطا در دریافت اطلاعات');
     }
 
-    const entries = raw && typeof raw === 'object' ? Object.entries(raw) : [];
-    // جدیدترین‌ها در ابتدا
-    currentList = entries.reverse().map(([id, item]) => ({
-      id,
-      name: item?.name || 'بدون عنوان',
-      price: item?.price || 'توافقی',
-      description: item?.description || '',
-      mainImage: item?.mainImage || FALLBACK_IMG,
-      extraImages: Array.isArray(item?.extraImages) ? item.extraImages.filter(Boolean) : [],
-      cardNumber: item?.cardNumber || DEFAULT_CARD,
-      cardName: item?.cardName || '',
-      ownerId: item?.ownerId || DEFAULT_RID
-    }));
+    const sourceObj = (raw && typeof raw === 'object' && raw.data && typeof raw.data === 'object')
+      ? raw.data
+      : raw;
+
+    const entries = Array.isArray(sourceObj)
+      ? sourceObj.map((item, idx) => [String(idx), item])
+      : (sourceObj && typeof sourceObj === 'object' ? Object.entries(sourceObj) : []);
+
+    currentList = entries
+      .filter(([, item]) => item && typeof item === 'object')
+      .reverse()
+      .map(([id, item]) => ({
+        id,
+        name: item?.name || 'بدون عنوان',
+        price: item?.price || 'توافقی',
+        description: item?.description || '',
+        mainImage: item?.mainImage || FALLBACK_IMG,
+        extraImages: Array.isArray(item?.extraImages) ? item.extraImages.filter(Boolean) : [],
+        cardNumber: item?.cardNumber || DEFAULT_CARD,
+        cardName: item?.cardName || '',
+        ownerId: item?.ownerId || DEFAULT_RID
+      }));
 
     if (!currentList.length) {
       $('grid').innerHTML = `<div class="status-box">هنوز آگهی در بخش «${s.n}» ثبت نشده است.</div>`;
@@ -405,4 +416,3 @@ document.querySelectorAll('.cp').forEach(b => b.onclick = async () => {
 </script>
 </body>
 </html>
- 
