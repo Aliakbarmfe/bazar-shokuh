@@ -12,7 +12,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{font-family:Vazirmatn,Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;line-height:1.75}
-button{font:inherit;color:inherit}
+button,input,textarea{font:inherit;color:inherit}
 .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(90% 60% at 80% 0,#231049,var(--bg) 70%)}
 .o{position:absolute;border-radius:50%;filter:blur(80px);will-change:transform}
 .o1{width:55vmax;height:55vmax;background:var(--vi);opacity:.3;top:-22vmax;left:-12vmax;animation:m1 24s ease-in-out infinite alternate}
@@ -22,13 +22,18 @@ button{font:inherit;color:inherit}
 @keyframes m2{to{transform:translate(-20vmax,-14vmax) scale(.8)}}
 .bub{position:absolute;bottom:-60px;width:var(--s);height:var(--s);border-radius:50% 50% 50% 8px;border:2px solid var(--c);opacity:.35;left:var(--x);animation:rise var(--d) linear infinite;animation-delay:var(--l)}
 @keyframes rise{to{transform:translateY(-115vh) rotate(40deg)}}
+
 nav{position:fixed;top:0;inset-inline:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:calc(12px + env(safe-area-inset-top)) 5vw 12px;background:#0b0c1ecc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #ffffff12}
 .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.25rem}
 .logo svg{width:32px;height:32px;animation:wob 4s ease-in-out infinite}
 @keyframes wob{50%{transform:rotate(12deg) scale(1.1)}}
+.nav-left{display:flex;align-items:center;gap:12px}
 .nl{color:var(--te);font-size:.85rem;display:flex;gap:8px;align-items:center}
 .nl i{width:8px;height:8px;border-radius:50%;background:var(--te);animation:bl 1.3s infinite}
 @keyframes bl{50%{opacity:.2;transform:scale(.6)}}
+.dots-btn{width:38px;height:38px;border-radius:12px;border:1px solid #ffffff1f;background:#ffffff0d;display:grid;place-items:center;cursor:pointer;font-size:1.3rem;font-weight:900;transition:.3s}
+.dots-btn:hover{background:#ffffff22;border-color:var(--te)}
+
 .hero{max-width:1200px;margin:auto;min-height:92svh;padding:110px 6vw 50px;display:grid;grid-template-columns:1.1fr 1fr;gap:3vw;align-items:center}
 h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bottom:16px}
 .gr{background:linear-gradient(90deg,var(--or),var(--pk),var(--vi),var(--or));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 7s linear infinite}
@@ -52,6 +57,7 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .tick{overflow:hidden;direction:ltr;background:linear-gradient(90deg,var(--vi),var(--pk),var(--or));transform:skewY(-1deg);margin:6px 0}
 .track{display:flex;width:max-content;animation:mq 28s linear infinite}.track span{padding:11px 26px;font-weight:900;white-space:nowrap}
 @keyframes mq{to{transform:translateX(-50%)}}
+
 .mk{max-width:1200px;margin:auto;padding:80px 5vw 40px;scroll-margin-top:60px}
 .mk h2{font-size:clamp(1.8rem,4.4vw,3rem);font-weight:900}.mk>p{color:var(--mute);margin-bottom:26px}
 .tabs{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:6px;border-radius:22px;background:#ffffff0d;border:1px solid #ffffff1a;margin-bottom:30px}
@@ -59,54 +65,91 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .tab{position:relative;z-index:1;border:0;background:none;cursor:pointer;padding:12px 4px;border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:700;transition:color .3s;color:var(--mute)}
 .tab svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease)}
 .tab.on{color:#fff}.tab.on svg{transform:scale(1.2) rotate(-6deg)}
-.tab:focus-visible,.buy:focus-visible,.cp:focus-visible,.x:focus-visible{outline:2px solid var(--te);outline-offset:3px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-.card{--c:var(--or);position:relative;padding:20px;border-radius:24px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;animation:in .7s var(--ease) backwards;animation-delay:calc(var(--i)*80ms);transition:transform .5s var(--ease),border-color .4s}
-@keyframes in{from{opacity:0;transform:translateY(40px) scale(.94)}}
-.card::before{content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:rotate(20deg);animation:gl 6s ease-in-out infinite;animation-delay:calc(var(--i)*.7s)}
-@keyframes gl{0%{left:-60%}35%,100%{left:140%}}
-.card:hover{transform:translateY(-8px);border-color:var(--c)}
-.top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
-.av{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--c);color:#12102b;font-weight:900;font-size:1.3rem;animation:bob 4s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
-.card h3{font-size:1.05rem;line-height:1.4}.card small{color:var(--mute)}
-.ms{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.ms span{font-size:.78rem;padding:3px 10px;border-radius:99px;background:#ffffff12}
-.spark{height:34px;margin-bottom:14px}.spark svg{width:100%;height:100%}.spark path{fill:none;stroke:var(--c);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:dr 2.5s var(--ease) forwards;animation-delay:calc(var(--i)*80ms + .3s)}
-@keyframes dr{to{stroke-dashoffset:0}}
-.row{display:flex;justify-content:space-between;align-items:center}
-.pr b{font-size:1.15rem}.pr small{margin-inline-start:4px}
-.buy{border:0;cursor:pointer;padding:10px 20px;border-radius:12px;font-weight:900;background:var(--c);color:#12102b;transition:.4s var(--ease)}
-.buy:hover{transform:scale(1.08) rotate(-2deg);box-shadow:0 0 24px var(--c)}
+
+/* کارت محصول ساده شده: فقط عکس و قیمت */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.p-card{--c:var(--or);position:relative;border-radius:22px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;cursor:pointer;animation:in .6s var(--ease) backwards;animation-delay:calc(var(--i)*60ms);transition:transform .4s var(--ease),border-color .3s}
+@keyframes in{from{opacity:0;transform:translateY(30px) scale(.95)}}
+.p-card:hover{transform:translateY(-6px);border-color:var(--c)}
+.p-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#141333}
+.p-price-bar{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#0d0d26}
+.p-price-bar b{font-size:1.15rem;color:var(--ink)}
+.p-price-bar small{color:var(--te);font-weight:700}
+.empty-msg{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--mute);background:#ffffff08;border-radius:20px;border:1px dashed #ffffff1f}
+
 .how{max-width:900px;margin:auto;padding:60px 6vw 90px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
 .how div{padding:22px 14px;border-radius:22px;background:#ffffff0a;border:1px solid #ffffff14}
 .how svg{width:46px;height:46px;margin-bottom:8px;fill:none;stroke:var(--te);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
 .how div:nth-child(2) svg{animation-delay:-1.3s;stroke:var(--or)}.how div:nth-child(3) svg{animation-delay:-2.6s;stroke:var(--pk)}
 .how b{display:block}.how small{color:var(--mute)}
 footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe-area-inset-bottom));border-top:1px solid #ffffff12;font-size:.9rem}
-/* modal */
-.ov{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:#05061299;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .4s}
+
+/* پاپ آپ عمومی */
+.ov{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:12px;background:#050612b3;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s}
 .ov.show{opacity:1;pointer-events:auto}
-.md{--c:var(--or);position:relative;width:min(520px,100%);max-height:92svh;overflow:auto;border-radius:28px;padding:26px 22px calc(22px + env(safe-area-inset-bottom));background:linear-gradient(170deg,#1f1d47,#0f0f2e);border:1px solid var(--c);box-shadow:0 0 60px #0008,0 0 40px color-mix(in srgb,var(--c) 40%,transparent);transform:translateY(60px) scale(.92);transition:transform .6s var(--ease)}
+.md{--c:var(--or);position:relative;width:min(520px,100%);max-height:92svh;overflow-y:auto;border-radius:26px;padding:24px 20px calc(22px + env(safe-area-inset-bottom));background:linear-gradient(170deg,#1f1d47,#0f0f2e);border:1px solid var(--c);box-shadow:0 0 60px #0009;transform:translateY(40px) scale(.94);transition:transform .45s var(--ease)}
 .ov.show .md{transform:none}
-.x{position:absolute;top:14px;inset-inline-start:14px;width:36px;height:36px;border-radius:50%;border:0;background:#ffffff1a;cursor:pointer;font-size:1.2rem;transition:transform .4s var(--ease)}.x:hover{transform:rotate(90deg)}
-.md h3{font-size:1.3rem;margin:6px 0 4px;padding-inline-start:40px}.md .sub{color:var(--mute);font-size:.9rem;margin-bottom:16px}
-.note{padding:14px;border-radius:16px;background:#ffffff0d;border:1px dashed #ffffff33;margin-bottom:16px;font-size:.95rem}
-.steps{list-style:none;margin-bottom:16px;display:grid;gap:8px}.steps li{display:flex;gap:10px;align-items:flex-start;color:var(--mute);font-size:.92rem;animation:in .6s var(--ease) backwards}
-.steps li:nth-child(2){animation-delay:.1s}.steps li:nth-child(3){animation-delay:.2s}
-.steps em{flex:none;width:24px;height:24px;border-radius:50%;background:var(--c);color:#12102b;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:.8rem}
+.x{position:absolute;top:14px;inset-inline-start:14px;width:36px;height:36px;border-radius:50%;border:0;background:#ffffff1a;cursor:pointer;font-size:1.1rem;display:grid;place-items:center;transition:.3s;z-index:5}
+.x:hover{transform:rotate(90deg);background:#ff3d8155}
+.md h3{font-size:1.25rem;margin:4px 0 6px;padding-inline-start:42px}
+.md .sub{color:var(--mute);font-size:.9rem;margin-bottom:14px}
+
+/* گالری عکس در پاپ آپ محصول */
+.gallery{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px;scroll-snap-type:x mandatory}
+.gallery img{height:210px;width:auto;max-width:100%;border-radius:16px;object-fit:cover;scroll-snap-align:start;border:1px solid #ffffff22;flex-none}
+.desc-box{padding:12px 14px;border-radius:16px;background:#ffffff0d;border:1px solid #ffffff1a;margin-bottom:14px;font-size:.92rem;white-space:pre-line;color:#e6e4ff}
 .fld{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:#ffffff0f;margin-bottom:10px}
-.fld small{display:block;color:var(--mute);font-size:.75rem}.fld b{font-size:1.05rem;letter-spacing:1px;direction:ltr;display:block;text-align:right;word-break:break-all}
-.cp{flex:none;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;background:var(--te);color:#06221d;transition:.3s}.cp.ok{background:var(--or);color:#1a0b00;transform:scale(1.08)}
-.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;translate:-50% 140px;background:var(--te);color:#06221d;font-weight:700;padding:11px 22px;border-radius:12px;transition:translate .5s var(--ease);z-index:80}.toast.show{translate:-50% 0}
-@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.fld small{display:block;color:var(--mute);font-size:.75rem}.fld b{font-size:1rem;letter-spacing:.5px;display:block;word-break:break-all}
+.cp{flex:none;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;background:var(--te);color:#06221d;transition:.3s}.cp.ok{background:var(--or);color:#1a0b00}
+
+/* فرم‌ها و ورودی‌ها */
+.inp-grp{margin-bottom:12px}
+.inp-grp label{display:block;font-size:.85rem;color:var(--mute);margin-bottom:5px}
+.inp{width:100%;padding:11px 14px;border-radius:14px;border:1px solid #ffffff24;background:#0b0c1e99;color:#fff;outline:none;transition:.3s}
+.inp:focus{border-color:var(--te)}
+textarea.inp{min-height:85px;resize:vertical}
+.btn-full{width:100%;padding:13px;border:0;border-radius:14px;font-weight:900;background:linear-gradient(110deg,var(--or),var(--pk));color:#fff;cursor:pointer;margin-top:6px;transition:.3s}
+.btn-full:disabled{opacity:.5;cursor:not-allowed}
+
+/* پاپ آپ 95 درصدی پنل مدیریت */
+.md-admin{width:95vw;height:95svh;max-width:95vw;max-height:95svh;display:flex;flex-direction:column;padding:20px}
+.admin-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px}
+.admin-cat-btn{padding:20px 12px;border-radius:20px;border:1px solid #ffffff22;background:#ffffff0d;font-weight:900;font-size:1.05rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;transition:.3s}
+.admin-cat-btn:hover{background:linear-gradient(135deg,#ff7a1a33,#8a5cff33);border-color:var(--te);transform:translateY(-3px)}
+
+/* پاپ آپ لیست محصولات داخل بخش مدیریت */
+.plus-btn{position:absolute;top:14px;inset-inline-start:14px;width:38px;height:38px;border-radius:50%;border:0;background:var(--te);color:#06221d;font-size:1.5rem;font-weight:900;display:grid;place-items:center;cursor:pointer;z-index:5;box-shadow:0 4px 15px #2ee6c555}
+.back-btn{position:absolute;top:14px;inset-inline-end:14px;padding:6px 14px;border-radius:12px;border:1px solid #ffffff22;background:#ffffff14;cursor:pointer;font-size:.85rem;z-index:5}
+.adm-list{display:grid;gap:12px;margin-top:16px;overflow-y:auto;padding-bottom:20px}
+.adm-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:16px;background:#ffffff0d;border:1px solid #ffffff1a}
+.adm-item img{width:62px;height:62px;border-radius:12px;object-fit:cover;flex:none;background:#000}
+.adm-info{flex:1;min-width:0}
+.adm-info b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-info small{color:var(--te)}
+.adm-acts{display:flex;gap:8px}
+.icon-btn{width:36px;height:36px;border-radius:10px;border:0;display:grid;place-items:center;cursor:pointer;font-size:1rem}
+.edit-btn{background:#ffb34726;color:#ffb347}
+.del-btn{background:#ff3d8126;color:#ff3d81}
+
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;translate:-50% 140px;background:var(--te);color:#06221d;font-weight:700;padding:11px 22px;border-radius:12px;transition:translate .4s var(--ease);z-index:99}.toast.show{translate:-50% 0}
+@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
 </style>
 </head>
 <body>
 <div class="bg" aria-hidden="true"><div class="o o1"></div><div class="o o2"></div><div class="o o3"></div><div id="bubs"></div></div>
 
-<nav><div class="logo"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7a1a"/><stop offset="1" stop-color="#ff3d81"/></linearGradient></defs><path d="M20 3c9 0 16 6 16 14s-7 14-16 14c-2 0-4-.3-6-.9L6 36l2.5-7C6 26.500 4 22 4 17 4 9 11 3 20 3z" fill="url(#lg)"/><circle cx="13" cy="17" r="2.200" fill="#fff"/><circle cx="20" cy="17" r="2.200" fill="#fff"/><circle cx="27" cy="17" r="2.200" fill="#fff"/></svg>بازار شکوه</div><div class="nl"><i></i>آنلاین · ۲۴ ساعته</div></nav>
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff7a1a"/><stop offset="1" stop-color="#ff3d81"/></linearGradient></defs><path d="M20 3c9 0 16 6 16 14s-7 14-16 14c-2 0-4-.3-6-.9L6 36l2.5-7C6 26.500 4 22 4 17 4 9 11 3 20 3z" fill="url(#lg)"/><circle cx="13" cy="17" r="2.2" fill="#fff"/><circle cx="20" cy="17" r="2.2" fill="#fff"/><circle cx="27" cy="17" r="2.2" fill="#fff"/></svg>
+    بازار شکوه
+  </div>
+  <div class="nav-left">
+    <div class="nl"><i></i>آنلاین · ۲۴ ساعته</div>
+    <!-- دکمه 3 نقطه بالا سمت چپ -->
+    <button class="dots-btn" id="openAdminLogin" aria-label="منوی مدیریت">⋮</button>
+  </div>
+</nav>
 
 <header class="hero">
 <div>
@@ -132,7 +175,7 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 <div class="tick" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section class="mk" id="mk">
-<h2>آگهی‌ها</h2><p>یک بخش را انتخاب کنید و روی «خرید» بزنید.</p>
+<h2>آگهی‌ها</h2><p>برای دیدن جزئیات و خرید، روی محصول مورد نظر بزنید.</p>
 <div class="tabs" id="tabs" role="tablist"><div class="ind" id="ind"></div></div>
 <div class="grid" id="grid"></div>
 </section>
@@ -145,64 +188,503 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 
 <footer>این سایت وابسته به روبیکا نیست</footer>
 
-<div class="ov" id="ov" aria-hidden="true"><div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt"><button class="x" id="x" aria-label="بستن">✕</button>
-<h3 id="mt"></h3><div class="sub" id="ms"></div>
-<div class="note" id="mn"></div>
-<ul class="steps"><li><em>1</em>مبلغ را به شماره کارت زیر واریز کنید.</li><li><em>2</em>رسید واریزی را از داخل روبیکا برای آیدی زیر بفرستید.</li><li><em>3</em>بعد از تایید، آگهی به شما تحویل داده می‌شود.</li></ul>
-<div class="fld"><div><small>مبلغ قابل پرداخت</small><b id="pp"></b></div></div>
-<div class="fld"><div><small>شماره کارت</small><b id="cd"></b></div><button class="cp" data-k="card">کپی</button></div>
-<div class="fld"><div><small>آیدی روبیکا</small><b id="rid"></b></div><button class="cp" data-k="id">کپی</button></div>
-</div></div>
+<!-- پاپ آپ نمایش جزئیات محصول برای کاربر -->
+<div class="ov" id="ov" aria-hidden="true">
+  <div class="md" id="md" role="dialog" aria-modal="true">
+    <button class="x" onclick="closeModal('ov')" aria-label="بستن">✕</button>
+    <h3 id="mt"></h3>
+    <div class="sub" id="ms"></div>
+    <div class="gallery" id="mGallery"></div>
+    <div class="desc-box" id="mDesc"></div>
+    <div class="fld"><div><small>قیمت</small><b id="pp"></b></div></div>
+    <div class="fld"><div><small>شماره کارت</small><b id="cd" style="direction:ltr;text-align:right"></b></div><button class="cp" id="cpCard">کپی</button></div>
+    <div class="fld"><div><small>نام صاحب کارت</small><b id="cName"></b></div></div>
+    <div class="fld"><div><small>آیدی روبیکا</small><b id="rid" style="direction:ltr;text-align:right"></b></div><button class="cp" id="cpId">کپی</button></div>
+  </div>
+</div>
+
+<!-- پاپ آپ ورود مدیر -->
+<div class="ov" id="loginOv" aria-hidden="true">
+  <div class="md" style="--c:var(--te);max-width:380px">
+    <button class="x" onclick="closeModal('loginOv')">✕</button>
+    <h3>ورود مدیر</h3>
+    <div class="sub">اطلاعات حساب مدیریت را وارد کنید</div>
+    <div class="inp-grp"><label>نام کاربری مدیر</label><input class="inp" id="admUserInp" type="text" autocomplete="username"></div>
+    <div class="inp-grp"><label>رمز عبور مدیر</label><input class="inp" id="admPassInp" type="password" autocomplete="current-password"></div>
+    <button class="btn-full" id="loginBtn">ورود</button>
+  </div>
+</div>
+
+<!-- پاپ آپ 95 درصدی داشبورد مدیریت -->
+<div class="ov" id="adminOv" aria-hidden="true">
+  <div class="md md-admin" style="--c:var(--vi)">
+    <button class="x" onclick="closeModal('adminOv')">✕</button>
+    <h3>پنل مدیریت بازارچه</h3>
+    <div class="sub">بخش مورد نظر را انتخاب کنید</div>
+    <div class="admin-menu">
+      <button class="admin-cat-btn" onclick="openAdminCat('g','گروه')">💬 گروه</button>
+      <button class="admin-cat-btn" onclick="openAdminCat('c','کانال')">📢 کانال</button>
+      <button class="admin-cat-btn" onclick="openAdminCat('p','پیج')">👤 پیج</button>
+      <button class="admin-cat-btn" onclick="openAdminCat('b','بازار')">🛒 بازار</button>
+      <button class="admin-cat-btn" onclick="openAdminInfo()" style="border-color:var(--te)">🔐 اطلاعات مدیر</button>
+    </div>
+  </div>
+</div>
+
+<!-- پاپ آپ مدیریت محصولات هر بخش -->
+<div class="ov" id="catOv" aria-hidden="true">
+  <div class="md md-admin" style="--c:var(--or)">
+    <!-- دکمه + بالا سمت راست -->
+    <button class="plus-btn" id="openAddProduct" title="افزودن محصول">+</button>
+    <button class="back-btn" onclick="closeModal('catOv')">بازگشت ➔</button>
+    <h3 id="catTitle" style="text-align:center;padding:0 45px">مدیریت بخش</h3>
+    <div class="adm-list" id="admList"></div>
+  </div>
+</div>
+
+<!-- پاپ آپ فرم افزودن / ویرایش محصول -->
+<div class="ov" id="formOv" aria-hidden="true">
+  <div class="md" style="--c:var(--te)">
+    <button class="x" onclick="closeModal('formOv')">✕</button>
+    <h3 id="formTitle">افزودن محصول جدید</h3>
+    <form id="prodForm" style="margin-top:14px">
+      <div class="inp-grp"><label>نام محصول</label><input class="inp" id="pName" required></div>
+      <div class="inp-grp"><label>عکس اصلی (انتخاب فایل)</label><input class="inp" id="pMainImg" type="file" accept="image/*"><small id="mainImgHint" style="color:var(--te);font-size:.75rem"></small></div>
+      <div class="inp-grp"><label>عکس های اضافی (چند انتخابی)</label><input class="inp" id="pExtraImgs" type="file" accept="image/*" multiple><small id="extraImgsHint" style="color:var(--te);font-size:.75rem"></small></div>
+      <div class="inp-grp"><label>قیمت (تومان)</label><input class="inp" id="pPrice" required placeholder="مثلاً: ۲,۵۰۰,۰۰۰"></div>
+      <div class="inp-grp"><label>توضیحات</label><textarea class="inp" id="pDesc" required></textarea></div>
+      <div class="inp-grp"><label>شماره کارت</label><input class="inp" id="pCard" required style="direction:ltr;text-align:right"></div>
+      <div class="inp-grp"><label>نام شماره کارت (صاحب حساب)</label><input class="inp" id="pCardName" required></div>
+      <div class="inp-grp"><label>آیدی روبیکا</label><input class="inp" id="pRubika" required style="direction:ltr;text-align:right" placeholder="@username"></div>
+      <button type="submit" class="btn-full" id="saveProdBtn">ثبت</button>
+    </form>
+  </div>
+</div>
+
+<!-- پاپ آپ اطلاعات مدیر (مشاهده و تغییر نام کاربری و رمز) -->
+<div class="ov" id="infoOv" aria-hidden="true">
+  <div class="md" style="--c:var(--pk);max-width:400px">
+    <button class="x" onclick="closeModal('infoOv')">✕</button>
+    <h3>اطلاعات مدیر</h3>
+    <div class="sub">نام کاربری و رمز عبور فعلی مدیر</div>
+    <div class="inp-grp"><label>نام کاربری مدیر</label><input class="inp" id="editAdmUser" type="text"></div>
+    <div class="inp-grp"><label>رمز عبور مدیر</label><input class="inp" id="editAdmPass" type="text"></div>
+    <button class="btn-full" id="saveAdmInfoBtn">ذخیره تغییرات</button>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-/* ===== اینجا را با اطلاعات واقعی خودتان عوض کنید ===== */
-const CARD='6037-9912-3478-5601';   // شماره کارت (نمونه)
-const RID='@rubi_shop_demo';         // آیدی روبیکا (نمونه)
-/* ======================================================== */
-const $=id=>document.getElementById(id);
-const IC={
-g:'<circle cx="9" cy="9" r="3.500"/><circle cx="17" cy="10" r="2.800"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3-1 6 1 6 5"/>',
-c:'<path d="M4 14V9l15-5v15L4 14zM4 14l2 6h3l-1-5"/>',
-p:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/>',
-b:'<path d="M4 9h16l-1.500 11h-13zM8 9a4 4 0 0 1 8 0"/>'};
-const S=[
-{k:'g',n:'گروه',c1:'#ff7a1a',c2:'#ff3d81',col:'#ff7a1a',items:[
-['گروه گیمرهای ایران','۱۲,۵۰۰ عضو','فعال','۳,۵۰۰,۰۰۰'],['گروه خرید و فروش لوازم','۸,۲۰۰ عضو','تجاری','۲,۲۰۰,۰۰۰'],['گروه آموزش زبان','۵,۴۰۰ عضو','آموزشی','۱,۴۰۰,۰۰۰'],['گروه طنز و سرگرمی','۲۱,۰۰۰ عضو','سرگرمی','۵,۸۰۰,۰۰۰']]},
-{k:'c',n:'کانال',c1:'#8a5cff',c2:'#ff3d81',col:'#8a5cff',items:[
-['کانال اخبار روز','۴۵,۰۰۰ دنبال‌کننده','خبری','۱۲,۰۰۰,۰۰۰'],['کانال فیلم و سریال','۱۸,۳۰۰ دنبال‌کننده','سرگرمی','۴,۶۰۰,۰۰۰'],['کانال تخفیف و کد','۹,۸۰۰ دنبال‌کننده','تجاری','۲,۹۰۰,۰۰۰'],['کانال انگیزشی','۲۶,۰۰۰ دنبال‌کننده','فرهنگی','۶,۲۰۰,۰۰۰']]},
-{k:'p',n:'پیج',c1:'#2ee6c5',c2:'#8a5cff',col:'#2ee6c5',items:[
-['پیج آشپزی خانگی','۳۲,۰۰۰ فالوور','غذا','۷,۵۰۰,۰۰۰'],['پیج مد و استایل','۱۴,۵۰۰ فالوور','مد','۴,۱۰۰,۰۰۰'],['پیج ورزش و تناسب','۱۱,۰۰۰ فالوور','ورزشی','۳,۳۰۰,۰۰۰'],['پیج سفر و طبیعت','۲۰,۲۰۰ فالوور','سفر','۵,۲۰۰,۰۰۰']]},
-{k:'b',n:'بازار',c1:'#ffb347',c2:'#ff7a1a',col:'#ffb347',items:[
-['ویترین فروشگاه آنلاین','فعال · ۳ ساله','فروشگاه','۹,۰۰۰,۰۰۰'],['بسته تبلیغات ویژه','۷ روز نمایش','تبلیغ','۱,۸۰۰,۰۰۰'],['نشان تایید پیج','تحویل سریع','خدمات','۲,۶۰۰,۰۰۰'],['دامنه و آیدی ۵ حرفی','آیدی کوتاه','آیدی','۱۵,۰۰۰,۰۰۰']]}];
-let cur=0;
-$('bubs').innerHTML=Array.from({length:12},(_,i)=>`<i class="bub" style="--s:${20+Math.random()*34}px;--x:${Math.random()*95}%;--c:${['#ff7a1a','#2ee6c5','#8a5cff','#ff3d81'][i%4]};--d:${16+Math.random()*18}s;--l:${-Math.random()*30}s"></i>`).join('');
-const W=['💬 گروه','📢 کانال','👤 پیج','🛒 بازار','✅ معامله امن','⚡ تحویل سریع'];
-$('track').innerHTML=[...W,...W,...W,...W].map(w=>`<span>${w}</span>`).join('');
-$('tabs').insertAdjacentHTML('beforeend',S.map((s,i)=>`<button class="tab${i?'':' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`).join(''));
-const spark=()=>{let y=30,d='M0 30';for(let x=15;x<=120;x+=15){y=Math.max(4,Math.min(30,y-4-Math.random()*8+Math.random()*5));d+=`L${x} ${y.toFixed(0)}`}return d};
-function show(i){cur=i;const s=S[i];$('ind').style.insetInlineStart=`calc(${i*25}% + 6px)`;
-$('tabs').style.setProperty('--c1',s.c1);$('tabs').style.setProperty('--c2',s.c2);
-[...document.querySelectorAll('.tab')].forEach((t,j)=>t.classList.toggle('on',j===i));
-$('grid').innerHTML=s.items.map((it,j)=>`<article class="card" style="--c:${s.col};--i:${j}"><div class="top"><div class="av">${s.n[0]}</div><div><h3>${it[0]}</h3><small>${s.n}</small></div></div>
-<div class="ms"><span>${it[1]}</span><span>${it[2]}</span></div>
-<div class="spark"><svg viewBox="0 0 120 34" preserveAspectRatio="none"><path d="${spark()}"/></svg></div>
-<div class="row"><div class="pr"><b>${it[3]}</b><small>تومان</small></div><button class="buy" data-j="${j}">خرید</button></div></article>`).join('')}
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(+t.dataset.i));
-show(0);
-/* modal */
-let last;
-$('grid').addEventListener('click',e=>{const b=e.target.closest('.buy');if(!b)return;last=b;const s=S[cur],it=s.items[+b.dataset.j];
-$('md').style.setProperty('--c',s.col);$('mt').textContent=it[0];$('ms').textContent=`${s.n} · ${it[1]} · ${it[2]}`;
-$('mn').innerHTML='برای خرید، مبلغ را به <b>شماره کارت</b> زیر واریز کنید و سپس <b>رسید</b> را از طریق روبیکا به <b>آیدی</b> زیر بفرستید.';
-$('pp').textContent=it[3]+' تومان';$('cd').textContent=CARD;$('rid').textContent=RID;
-$('ov').classList.add('show');$('ov').setAttribute('aria-hidden','false');$('x').focus();document.body.style.overflow='hidden'});
-const close=()=>{$('ov').classList.remove('show');$('ov').setAttribute('aria-hidden','true');document.body.style.overflow='';last&&last.focus()};
-$('x').onclick=close;$('ov').onclick=e=>{if(e.target===$('ov'))close()};addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-let tt;const say=m=>{const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800)};
-document.querySelectorAll('.cp').forEach(b=>b.onclick=async()=>{const v=b.dataset.k==='card'?CARD.replace(/-/,''):RID;
-try{await navigator.clipboard.writeText(v)}catch(_){const a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(__){}a.remove()}
-b.classList.add('ok');b.textContent='کپی شد ✓';say('کپی شد');setTimeout(()=>{b.classList.remove('ok');b.textContent='کپی'},1500)});
+const $ = id => document.getElementById(id);
+const IC = {
+  g: '<circle cx="9" cy="9" r="3.5"/><circle cx="17" cy="10" r="2.8"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3-1 6 1 6 5"/>',
+  c: '<path d="M4 14V9l15-5v15L4 14zM4 14l2 6h3l-1-5"/>',
+  p: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/>',
+  b: '<path d="M4 9h16l-1.5 11h-13zM8 9a4 4 0 0 1 8 0"/>'
+};
+
+const CATS = [
+  { k: 'g', n: 'گروه', c1: '#ff7a1a', c2: '#ff3d81', col: '#ff7a1a' },
+  { k: 'c', n: 'کانال', c1: '#8a5cff', c2: '#ff3d81', col: '#8a5cff' },
+  { k: 'p', n: 'پیج', c1: '#2ee6c5', c2: '#8a5cff', col: '#2ee6c5' },
+  { k: 'b', n: 'بازار', c1: '#ffb347', c2: '#ff7a1a', col: '#ffb347' }
+];
+
+let curTab = 0;
+let allProducts = { g: {}, c: {}, p: {}, b: {} };
+let activeAdminCat = 'g';
+let editingProductId = null;
+let editingExistingData = null;
+
+// انیمیشن پس‌زمینه و نوار متحرک
+$('bubs').innerHTML = Array.from({length: 12}, (_, i) => `<i class="bub" style="--s:${20+Math.random()*34}px;--x:${Math.random()*95}%;--c:${['#ff7a1a','#2ee6c5','#8a5cff','#ff3d81'][i%4]};--d:${16+Math.random()*18}s;--l:${-Math.random()*30}s"></i>`).join('');
+const W = ['💬 گروه','📢 کانال','👤 پیج','🛒 بازار','✅ معامله امن','⚡ تحویل سریع'];
+$('track').innerHTML = [...W,...W,...W,...W].map(w => `<span>${w}</span>`).join('');
+$('tabs').insertAdjacentHTML('beforeend', CATS.map((s, i) => `<button class="tab${i?'':' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`).join(''));
+
+let tt;
+const say = m => {
+  const t = $('toast');
+  t.textContent = m;
+  t.classList.add('show');
+  clearTimeout(tt);
+  tt = setTimeout(() => t.classList.remove('show'), 2200);
+};
+
+function openModal(id) {
+  $(id).classList.add('show');
+  $(id).setAttribute('aria-hidden', 'false');
+}
+function closeModal(id) {
+  $(id).classList.remove('show');
+  $(id).setAttribute('aria-hidden', 'true');
+}
+
+// ارتباط با سرور واسط فایربیس در پوشه api
+async function fbRequest(path, method = 'GET', body = null) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body !== null) opts.body = JSON.stringify(body);
+  const res = await fetch(`/api/firebase?path=${encodeURIComponent(path)}`, opts);
+  if (!res.ok) throw new Error('خطا در ارتباط با سرور');
+  return await res.json();
+}
+
+// فشرده‌سازی سبک تصویر برای آپلود سریع و بدون خطا در Vercel + imgbb
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = e => {
+      const img = new Image();
+      img.src = e.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxW = 1000;
+        let w = img.width, h = img.height;
+        if (w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = reject;
+    };
+    reader.onerror = reject;
+  });
+}
+
+// آپلود عکس به imgbb از طریق api/imgbb.js
+async function uploadToImgBB(file) {
+  const base64 = await compressImage(file);
+  const res = await fetch('/api/imgbb', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: base64 })
+  });
+  const data = await res.json();
+  if (!res.ok || !data.url) throw new Error(data.error || 'خطا در آپلود عکس');
+  return data.url;
+}
+
+// دریافت همه محصولات از فایربیس
+async function loadProducts() {
+  $('grid').innerHTML = '<div class="empty-msg">در حال بارگذاری آگهی‌ها...</div>';
+  try {
+    const data = await fbRequest('products');
+    allProducts = {
+      g: (data && data.g) || {},
+      c: (data && data.c) || {},
+      p: (data && data.p) || {},
+      b: (data && data.b) || {}
+    };
+    renderUserGrid(curTab);
+  } catch (e) {
+    $('grid').innerHTML = '<div class="empty-msg">خطا در دریافت اطلاعات از سرور</div>';
+  }
+}
+
+// نمایش محصولات به کاربر (فقط عکس اصلی و قیمت)
+function renderUserGrid(i) {
+  curTab = i;
+  const s = CATS[i];
+  $('ind').style.insetInlineStart = `calc(${i * 25}% + 6px)`;
+  $('tabs').style.setProperty('--c1', s.c1);
+  $('tabs').style.setProperty('--c2', s.c2);
+  [...document.querySelectorAll('.tab')].forEach((t, j) => t.classList.toggle('on', j === i));
+
+  const itemsObj = allProducts[s.k] || {};
+  const entries = Object.entries(itemsObj);
+
+  if (!entries.length) {
+    $('grid').innerHTML = `<div class="empty-msg">هنوز آگهی‌ای در بخش «${s.n}» ثبت نشده است.</div>`;
+    return;
+  }
+
+  $('grid').innerHTML = entries.map(([id, item], idx) => `
+    <article class="p-card" style="--c:${s.col};--i:${idx}" onclick="openProductDetail('${s.k}','${id}')">
+      <img class="p-img" src="${item.mainImg || ''}" alt="${item.name || ''}" loading="lazy">
+      <div class="p-price-bar">
+        <b>${item.price}</b>
+        <small>تومان</small>
+      </div>
+    </article>
+  `).join('');
+}
+
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => renderUserGrid(+t.dataset.i));
+
+// باز کردن پاپ آپ جزئیات محصول برای کاربر
+function openProductDetail(catKey, prodId) {
+  const item = allProducts[catKey]?.[prodId];
+  if (!item) return;
+  const cat = CATS.find(x => x.k === catKey);
+
+  $('md').style.setProperty('--c', cat.col);
+  $('mt').textContent = item.name;
+  $('ms').textContent = `دسته‌بندی: ${cat.n}`;
+
+  const imgs = [item.mainImg, ...(item.extraImgs || [])].filter(Boolean);
+  $('mGallery').innerHTML = imgs.map(src => `<img src="${src}" alt="${item.name}">`).join('');
+
+  $('mDesc').textContent = item.desc || 'بدون توضیحات';
+  $('pp').textContent = `${item.price} تومان`;
+  $('cd').textContent = item.card || '-';
+  $('cName').textContent = item.cardName || '-';
+  $('rid').textContent = item.rubika || '-';
+
+  $('cpCard').onclick = () => copyText((item.card || '').replace(/-/g, ''), $('cpCard'));
+  $('cpId').onclick = () => copyText(item.rubika || '', $('cpId'));
+
+  openModal('ov');
+}
+
+async function copyText(val, btn) {
+  try {
+    await navigator.clipboard.writeText(val);
+  } catch (_) {
+    const a = document.createElement('textarea');
+    a.value = val;
+    document.body.appendChild(a);
+    a.select();
+    document.execCommand('copy');
+    a.remove();
+  }
+  btn.classList.add('ok');
+  btn.textContent = 'کپی شد ✓';
+  say('کپی شد');
+  setTimeout(() => { btn.classList.remove('ok'); btn.textContent = 'کپی'; }, 1500);
+}
+
+/* ==================== منطق پنل مدیریت ==================== */
+
+// دریافت یا ساخت اطلاعات اولیه مدیر در فایربیس
+async function getAdminCredentials() {
+  let admin = await fbRequest('admin');
+  if (!admin || !admin.username || !admin.password) {
+    admin = { username: 'admin', password: '1234' };
+    await fbRequest('admin', 'PUT', admin);
+  }
+  return admin;
+}
+
+$('openAdminLogin').onclick = () => {
+  $('admUserInp').value = '';
+  $('admPassInp').value = '';
+  openModal('loginOv');
+};
+
+$('loginBtn').onclick = async () => {
+  const u = $('admUserInp').value.trim();
+  const p = $('admPassInp').value.trim();
+  if (!u || !p) return say('نام کاربری و رمز را وارد کنید');
+
+  const btn = $('loginBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال بررسی...';
+
+  try {
+    const admin = await getAdminCredentials();
+    if (u === String(admin.username) && p === String(admin.password)) {
+      closeModal('loginOv');
+      openModal('adminOv');
+      say('خوش آمدید مدیر');
+    } else {
+      say('نام کاربری یا رمز عبور اشتباه است');
+    }
+  } catch (e) {
+    say('خطا در بررسی اطلاعات');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'ورود';
+  }
+};
+
+// باز کردن هر کدام از 4 بخش در پنل مدیریت
+function openAdminCat(catKey, catName) {
+  activeAdminCat = catKey;
+  $('catTitle').textContent = `مدیریت ${catName}`;
+  renderAdminProductList();
+  openModal('catOv');
+}
+
+function renderAdminProductList() {
+  const itemsObj = allProducts[activeAdminCat] || {};
+  const entries = Object.entries(itemsObj);
+  if (!entries.length) {
+    $('admList').innerHTML = '<div class="empty-msg">هیچ محصولی در این بخش ثبت نشده است. روی + بزنید.</div>';
+    return;
+  }
+  $('admList').innerHTML = entries.map(([id, item]) => `
+    <div class="adm-item">
+      <img src="${item.mainImg || ''}" alt="">
+      <div class="adm-info">
+        <b>${item.name}</b>
+        <small>${item.price} تومان</small>
+      </div>
+      <div class="adm-acts">
+        <button class="icon-btn edit-btn" onclick="openEditProduct('${id}')" title="ویرایش">✏️</button>
+        <button class="icon-btn del-btn" onclick="deleteProduct('${id}')" title="حذف">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// دکمه + برای افزودن محصول جدید
+$('openAddProduct').onclick = () => {
+  editingProductId = null;
+  editingExistingData = null;
+  $('formTitle').textContent = 'افزودن محصول جدید';
+  $('prodForm').reset();
+  $('mainImgHint').textContent = '';
+  $('extraImgsHint').textContent = '';
+  openModal('formOv');
+};
+
+// دکمه مداد برای ویرایش محصول
+function openEditProduct(id) {
+  const item = allProducts[activeAdminCat]?.[id];
+  if (!item) return;
+  editingProductId = id;
+  editingExistingData = item;
+
+  $('formTitle').textContent = 'ویرایش محصول';
+  $('pName').value = item.name || '';
+  $('pMainImg').value = '';
+  $('pExtraImgs').value = '';
+  $('mainImgHint').textContent = item.mainImg ? 'عکس اصلی قبلی حفظ می‌شود (در صورت نیاز عکس جدید انتخاب کنید)' : '';
+  $('extraImgsHint').textContent = (item.extraImgs && item.extraImgs.length) ? `${item.extraImgs.length} عکس اضافی قبلی موجود است` : '';
+  $('pPrice').value = item.price || '';
+  $('pDesc').value = item.desc || '';
+  $('pCard').value = item.card || '';
+  $('pCardName').value = item.cardName || '';
+  $('pRubika').value = item.rubika || '';
+
+  openModal('formOv');
+}
+
+// ثبت یا ویرایش محصول
+$('prodForm').onsubmit = async e => {
+  e.preventDefault();
+  const mainFile = $('pMainImg').files[0];
+  const extraFiles = Array.from($('pExtraImgs').files);
+
+  if (!editingProductId && !mainFile) {
+    return say('لطفاً عکس اصلی محصول را انتخاب کنید');
+  }
+
+  const btn = $('saveProdBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال آپلود و ذخیره...';
+
+  try {
+    let mainImgUrl = editingExistingData?.mainImg || '';
+    if (mainFile) {
+      mainImgUrl = await uploadToImgBB(mainFile);
+    }
+
+    let extraImgUrls = editingExistingData?.extraImgs || [];
+    if (extraFiles.length > 0) {
+      extraImgUrls = [];
+      for (const f of extraFiles) {
+        const url = await uploadToImgBB(f);
+        extraImgUrls.push(url);
+      }
+    }
+
+    const payload = {
+      name: $('pName').value.trim(),
+      mainImg: mainImgUrl,
+      extraImgs: extraImgUrls,
+      price: $('pPrice').value.trim(),
+      desc: $('pDesc').value.trim(),
+      card: $('pCard').value.trim(),
+      cardName: $('pCardName').value.trim(),
+      rubika: $('pRubika').value.trim(),
+      updatedAt: Date.now()
+    };
+
+    if (editingProductId) {
+      await fbRequest(`products/${activeAdminCat}/${editingProductId}`, 'PUT', payload);
+      allProducts[activeAdminCat][editingProductId] = payload;
+      say('محصول ویرایش شد');
+    } else {
+      const res = await fbRequest(`products/${activeAdminCat}`, 'POST', payload);
+      if (res && res.name) {
+        allProducts[activeAdminCat][res.name] = payload;
+      }
+      say('محصول با موفقیت ثبت شد');
+    }
+
+    closeModal('formOv');
+    renderAdminProductList();
+    renderUserGrid(curTab);
+  } catch (err) {
+    say(err.message || 'خطا در ثبت محصول');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'ثبت';
+  }
+};
+
+// حذف محصول (سطل آشغال)
+async function deleteProduct(id) {
+  if (!confirm('آیا از حذف این محصول مطمئن هستید؟')) return;
+  try {
+    await fbRequest(`products/${activeAdminCat}/${id}`, 'DELETE');
+    delete allProducts[activeAdminCat][id];
+    renderAdminProductList();
+    renderUserGrid(curTab);
+    say('محصول حذف شد');
+  } catch (e) {
+    say('خطا در حذف محصول');
+  }
+}
+
+// بخش اطلاعات مدیر (مشاهده و تغییر نام کاربری و رمز)
+async function openAdminInfo() {
+  openModal('infoOv');
+  $('editAdmUser').value = 'در حال بارگذاری...';
+  $('editAdmPass').value = '';
+  try {
+    const admin = await getAdminCredentials();
+    $('editAdmUser').value = admin.username;
+    $('editAdmPass').value = admin.password;
+  } catch (e) {
+    say('خطا در دریافت اطلاعات مدیر');
+  }
+}
+
+$('saveAdmInfoBtn').onclick = async () => {
+  const username = $('editAdmUser').value.trim();
+  const password = $('editAdmPass').value.trim();
+  if (!username || !password) return say('نام کاربری و رمز نمی‌تواند خالی باشد');
+
+  const btn = $('saveAdmInfoBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال ذخیره...';
+  try {
+    await fbRequest('admin', 'PUT', { username, password });
+    say('اطلاعات مدیر تغییر کرد');
+    closeModal('infoOv');
+  } catch (e) {
+    say('خطا در ذخیره اطلاعات');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'ذخیره تغییرات';
+  }
+};
+
+// بستن مودال‌ها با کلیک روی پس‌زمینه
+document.querySelectorAll('.ov').forEach(ov => {
+  ov.addEventListener('click', e => {
+    if (e.target === ov) closeModal(ov.id);
+  });
+});
+
+// بارگذاری اولیه محصولات هنگام باز شدن سایت
+loadProducts();
 </script>
 </body>
-</html> 
+</html>
