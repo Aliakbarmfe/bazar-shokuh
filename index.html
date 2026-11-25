@@ -61,41 +61,23 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .tab.on{color:#fff}.tab.on svg{transform:scale(1.2) rotate(-6deg)}
 .tab:focus-visible,.buy:focus-visible,.cp:focus-visible,.x:focus-visible{outline:2px solid var(--te);outline-offset:3px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-.card{--c:var(--or);position:relative;padding:18px;border-radius:24px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;animation:in .7s var(--ease) backwards;animation-delay:calc(var(--i)*80ms);transition:transform .5s var(--ease),border-color .4s;display:flex;flex-direction:column}
+.card{--c:var(--or);position:relative;padding:20px;border-radius:24px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;animation:in .7s var(--ease) backwards;animation-delay:calc(var(--i)*80ms);transition:transform .5s var(--ease),border-color .4s}
 @keyframes in{from{opacity:0;transform:translateY(40px) scale(.94)}}
 .card::before{content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:rotate(20deg);animation:gl 6s ease-in-out infinite;animation-delay:calc(var(--i)*.7s)}
 @keyframes gl{0%{left:-60%}35%,100%{left:140%}}
 .card:hover{transform:translateY(-8px);border-color:var(--c)}
-
-/* عکس اصلی روی باکس محصول */
-.thumb-wrap{position:relative;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;margin-bottom:14px;background:#090a1c;border:1px solid #ffffff14;cursor:pointer}
-.thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s var(--ease)}
-.thumb-wrap:hover img{transform:scale(1.05)}
-.extra-badge{position:absolute;bottom:8px;inset-inline-end:8px;background:#0b0c1ecc;backdrop-filter:blur(6px);border:1px solid #ffffff26;color:#fff;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:99px;pointer-events:none}
-
-.top{display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.av{width:44px;height:44px;flex-shrink:0;border-radius:14px;display:grid;place-items:center;background:var(--c);color:#12102b;font-weight:900;font-size:1.15rem;animation:bob 4s ease-in-out infinite}
+.top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.av{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--c);color:#12102b;font-weight:900;font-size:1.3rem;animation:bob 4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
 .card h3{font-size:1.05rem;line-height:1.4}.card small{color:var(--mute)}
-.desc{color:var(--mute);font-size:.86rem;line-height:1.65;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:8px}
-.pr b{font-size:1.1rem}.pr small{margin-inline-start:4px;color:var(--mute)}
+.ms{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ms span{font-size:.78rem;padding:3px 10px;border-radius:99px;background:#ffffff12}
+.spark{height:34px;margin-bottom:14px}.spark svg{width:100%;height:100%}.spark path{fill:none;stroke:var(--c);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:dr 2.5s var(--ease) forwards;animation-delay:calc(var(--i)*80ms + .3s)}
+@keyframes dr{to{stroke-dashoffset:0}}
+.row{display:flex;justify-content:space-between;align-items:center}
+.pr b{font-size:1.15rem}.pr small{margin-inline-start:4px}
 .buy{border:0;cursor:pointer;padding:10px 20px;border-radius:12px;font-weight:900;background:var(--c);color:#12102b;transition:.4s var(--ease)}
 .buy:hover{transform:scale(1.08) rotate(-2deg);box-shadow:0 0 24px var(--c)}
-.status-box{grid-column:1/-1;text-align:center;padding:44px 18px;border-radius:22px;background:#ffffff08;border:1px dashed #ffffff22;color:var(--mute)}
-
-/* گالری عکس‌های اضافی با کلیک روی عکس اصلی */
-.gal-ov{position:fixed;inset:0;z-index:70;display:none;place-items:center;padding:16px;background:#04050ee6;backdrop-filter:blur(10px)}
-.gal-ov.show{display:grid}
-.gal-box{position:relative;width:min(680px,100%);background:linear-gradient(170deg,#1d1b42,#0d0d29);border:1px solid #ffffff26;border-radius:24px;padding:20px;box-shadow:0 24px 60px #000a}
-.gal-main{width:100%;max-height:58svh;object-fit:contain;border-radius:16px;background:#070817;display:block;margin-bottom:14px}
-.gal-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
-.gal-thumbs img{width:68px;height:68px;object-fit:cover;border-radius:12px;cursor:pointer;opacity:.55;border:2px solid transparent;flex-shrink:0;transition:.25s}
-.gal-thumbs img.active,.gal-thumbs img:hover{opacity:1;border-color:var(--te)}
-.gal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.gal-title{font-weight:900;font-size:1.05rem}
-.gal-close{width:36px;height:36px;border-radius:50%;border:0;background:#ffffff1a;cursor:pointer;font-size:1.1rem}
-
 .how{max-width:900px;margin:auto;padding:60px 6vw 90px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
 .how div{padding:22px 14px;border-radius:22px;background:#ffffff0a;border:1px solid #ffffff14}
 .how svg{width:46px;height:46px;margin-bottom:8px;fill:none;stroke:var(--te);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:bob 4s ease-in-out infinite}
@@ -150,7 +132,7 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 <div class="tick" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section class="mk" id="mk">
-<h2>آگهی‌ها</h2><p>یک بخش را انتخاب کنید؛ برای دیدن عکس‌های اضافی روی عکس بزنید و برای خرید «خرید» را بزنید.</p>
+<h2>آگهی‌ها</h2><p>یک بخش را انتخاب کنید و روی «خرید» بزنید.</p>
 <div class="tabs" id="tabs" role="tablist"><div class="ind" id="ind"></div></div>
 <div class="grid" id="grid"></div>
 </section>
@@ -163,19 +145,6 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 
 <footer>این سایت وابسته به روبیکا نیست</footer>
 
-<!-- گالری نمایش عکس اصلی و عکس‌های اضافی -->
-<div class="gal-ov" id="galOv" aria-hidden="true">
-  <div class="gal-box">
-    <div class="gal-head">
-      <div class="gal-title" id="galTitle">تصاویر محصول</div>
-      <button class="gal-close" id="galClose" aria-label="بستن گالری">✕</button>
-    </div>
-    <img class="gal-main" id="galMain" src="" alt="تصویر محصول">
-    <div class="gal-thumbs" id="galThumbs"></div>
-  </div>
-</div>
-
-<!-- مودال خرید -->
 <div class="ov" id="ov" aria-hidden="true"><div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt"><button class="x" id="x" aria-label="بستن">✕</button>
 <h3 id="mt"></h3><div class="sub" id="ms"></div>
 <div class="note" id="mn"></div>
@@ -187,232 +156,53 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-const DEFAULT_CARD = '6037-9912-3478-5601';
-const DEFAULT_RID  = '@rubi_shop_demo';
-const FALLBACK_IMG = 'https://via.placeholder.com/600x380/141333/f3f1ff?text=No+Image';
-
-const $ = id => document.getElementById(id);
-
-const IC = {
-  g: '<circle cx="9" cy="9" r="3.500"/><circle cx="17" cy="10" r="2.800"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3-1 6 1 6 5"/>',
-  c: '<path d="M4 14V9l15-5v15L4 14zM4 14l2 6h3l-1-5"/>',
-  p: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/>',
-  b: '<path d="M4 9h16l-1.500 11h-13zM8 9a4 4 0 0 1 8 0"/>'
-};
-
-/* dbKey دقیقاً با کلیدهای ذخیره شده در فایربیس و پنل ادمین هماهنگ است */
-const S = [
-  { k: 'g', dbKey: 'group',   n: 'گروه',  c1: '#ff7a1a', c2: '#ff3d81', col: '#ff7a1a' },
-  { k: 'c', dbKey: 'channel', n: 'کانال', c1: '#8a5cff', c2: '#ff3d81', col: '#8a5cff' },
-  { k: 'p', dbKey: 'page',    n: 'پیج',   c1: '#2ee6c5', c2: '#8a5cff', col: '#2ee6c5' },
-  { k: 'b', dbKey: 'market',  n: 'بازار', c1: '#ffb347', c2: '#ff7a1a', col: '#ffb347' }
-];
-
-let cur = 0;
-let currentList = [];
-let activeCard = DEFAULT_CARD;
-let activeRid = DEFAULT_RID;
-
-$('bubs').innerHTML = Array.from({ length: 12 }, (_, i) =>
-  `<i class="bub" style="--s:${20 + Math.random() * 34}px;--x:${Math.random() * 95}%;--c:${['#ff7a1a', '#2ee6c5', '#8a5cff', '#ff3d81'][i % 4]};--d:${16 + Math.random() * 18}s;--l:${-Math.random() * 30}s"></i>`
-).join('');
-
-const W = ['💬 گروه', '📢 کانال', '👤 پیج', '🛒 بازار', '✅ معامله امن', '⚡ تحویل سریع'];
-$('track').innerHTML = [...W, ...W, ...W, ...W].map(w => `<span>${w}</span>`).join('');
-
-$('tabs').insertAdjacentHTML('beforeend', S.map((s, i) =>
-  `<button class="tab${i ? '' : ' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`
-).join(''));
-
-async function show(i) {
-  cur = i;
-  const s = S[i];
-  $('ind').style.insetInlineStart = `calc(${i * 25}% + 6px)`;
-  $('tabs').style.setProperty('--c1', s.c1);
-  $('tabs').style.setProperty('--c2', s.c2);
-  [...document.querySelectorAll('.tab')].forEach((t, j) => t.classList.toggle('on', j === i));
-
-  $('grid').innerHTML = `<div class="status-box">در حال دریافت آگهی‌های ${s.n} از دیتابیس...</div>`;
-
-  try {
-    const res = await fetch(`/api/db?category=${encodeURIComponent(s.dbKey)}&_t=${Date.now()}`, {
-      cache: 'no-store'
-    });
-    const raw = await res.json();
-
-    if (!res.ok) {
-      throw new Error(raw?.error || 'خطا در دریافت اطلاعات');
-    }
-
-    const sourceObj = (raw && typeof raw === 'object' && raw.data && typeof raw.data === 'object')
-      ? raw.data
-      : raw;
-
-    const entries = Array.isArray(sourceObj)
-      ? sourceObj.map((item, idx) => [String(idx), item])
-      : (sourceObj && typeof sourceObj === 'object' ? Object.entries(sourceObj) : []);
-
-    currentList = entries
-      .filter(([, item]) => item && typeof item === 'object')
-      .reverse()
-      .map(([id, item]) => ({
-        id,
-        name: item?.name || 'بدون عنوان',
-        price: item?.price || 'توافقی',
-        description: item?.description || '',
-        mainImage: item?.mainImage || FALLBACK_IMG,
-        extraImages: Array.isArray(item?.extraImages) ? item.extraImages.filter(Boolean) : [],
-        cardNumber: item?.cardNumber || DEFAULT_CARD,
-        cardName: item?.cardName || '',
-        ownerId: item?.ownerId || DEFAULT_RID
-      }));
-
-    if (!currentList.length) {
-      $('grid').innerHTML = `<div class="status-box">هنوز آگهی در بخش «${s.n}» ثبت نشده است.</div>`;
-      return;
-    }
-
-    $('grid').innerHTML = currentList.map((it, j) => {
-      const extrasCount = it.extraImages.length;
-      return `
-        <article class="card" style="--c:${s.col};--i:${j}">
-          <div class="thumb-wrap" data-idx="${j}" title="برای مشاهده عکس‌های اضافی کلیک کنید">
-            <img src="${it.mainImage}" alt="${it.name}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'">
-            ${extrasCount > 0 ? `<span class="extra-badge">+${extrasCount} عکس اضافی</span>` : `<span class="extra-badge">مشاهده عکس</span>`}
-          </div>
-          <div class="top">
-            <div class="av">${s.n[0]}</div>
-            <div><h3>${it.name}</h3><small>${s.n}</small></div>
-          </div>
-          ${it.description ? `<p class="desc">${it.description}</p>` : ''}
-          <div class="row">
-            <div class="pr"><b>${it.price}</b></div>
-            <button class="buy" data-j="${j}">خرید</button>
-          </div>
-        </article>
-      `;
-    }).join('');
-  } catch (err) {
-    $('grid').innerHTML = `<div class="status-box" style="color:#ff7a1a">خطا در بارگذاری اطلاعات: ${err.message}</div>`;
-  }
-}
-
-document.querySelectorAll('.tab').forEach(t => t.onclick = () => show(+t.dataset.i));
+/* ===== اینجا را با اطلاعات واقعی خودتان عوض کنید ===== */
+const CARD='6037-9912-3478-5601';   // شماره کارت (نمونه)
+const RID='@rubi_shop_demo';         // آیدی روبیکا (نمونه)
+/* ======================================================== */
+const $=id=>document.getElementById(id);
+const IC={
+g:'<circle cx="9" cy="9" r="3.500"/><circle cx="17" cy="10" r="2.800"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3-1 6 1 6 5"/>',
+c:'<path d="M4 14V9l15-5v15L4 14zM4 14l2 6h3l-1-5"/>',
+p:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/>',
+b:'<path d="M4 9h16l-1.500 11h-13zM8 9a4 4 0 0 1 8 0"/>'};
+const S=[
+{k:'g',n:'گروه',c1:'#ff7a1a',c2:'#ff3d81',col:'#ff7a1a',items:[
+['گروه گیمرهای ایران','۱۲,۵۰۰ عضو','فعال','۳,۵۰۰,۰۰۰'],['گروه خرید و فروش لوازم','۸,۲۰۰ عضو','تجاری','۲,۲۰۰,۰۰۰'],['گروه آموزش زبان','۵,۴۰۰ عضو','آموزشی','۱,۴۰۰,۰۰۰'],['گروه طنز و سرگرمی','۲۱,۰۰۰ عضو','سرگرمی','۵,۸۰۰,۰۰۰']]},
+{k:'c',n:'کانال',c1:'#8a5cff',c2:'#ff3d81',col:'#8a5cff',items:[
+['کانال اخبار روز','۴۵,۰۰۰ دنبال‌کننده','خبری','۱۲,۰۰۰,۰۰۰'],['کانال فیلم و سریال','۱۸,۳۰۰ دنبال‌کننده','سرگرمی','۴,۶۰۰,۰۰۰'],['کانال تخفیف و کد','۹,۸۰۰ دنبال‌کننده','تجاری','۲,۹۰۰,۰۰۰'],['کانال انگیزشی','۲۶,۰۰۰ دنبال‌کننده','فرهنگی','۶,۲۰۰,۰۰۰']]},
+{k:'p',n:'پیج',c1:'#2ee6c5',c2:'#8a5cff',col:'#2ee6c5',items:[
+['پیج آشپزی خانگی','۳۲,۰۰۰ فالوور','غذا','۷,۵۰۰,۰۰۰'],['پیج مد و استایل','۱۴,۵۰۰ فالوور','مد','۴,۱۰۰,۰۰۰'],['پیج ورزش و تناسب','۱۱,۰۰۰ فالوور','ورزشی','۳,۳۰۰,۰۰۰'],['پیج سفر و طبیعت','۲۰,۲۰۰ فالوور','سفر','۵,۲۰۰,۰۰۰']]},
+{k:'b',n:'بازار',c1:'#ffb347',c2:'#ff7a1a',col:'#ffb347',items:[
+['ویترین فروشگاه آنلاین','فعال · ۳ ساله','فروشگاه','۹,۰۰۰,۰۰۰'],['بسته تبلیغات ویژه','۷ روز نمایش','تبلیغ','۱,۸۰۰,۰۰۰'],['نشان تایید پیج','تحویل سریع','خدمات','۲,۶۰۰,۰۰۰'],['دامنه و آیدی ۵ حرفی','آیدی کوتاه','آیدی','۱۵,۰۰۰,۰۰۰']]}];
+let cur=0;
+$('bubs').innerHTML=Array.from({length:12},(_,i)=>`<i class="bub" style="--s:${20+Math.random()*34}px;--x:${Math.random()*95}%;--c:${['#ff7a1a','#2ee6c5','#8a5cff','#ff3d81'][i%4]};--d:${16+Math.random()*18}s;--l:${-Math.random()*30}s"></i>`).join('');
+const W=['💬 گروه','📢 کانال','👤 پیج','🛒 بازار','✅ معامله امن','⚡ تحویل سریع'];
+$('track').innerHTML=[...W,...W,...W,...W].map(w=>`<span>${w}</span>`).join('');
+$('tabs').insertAdjacentHTML('beforeend',S.map((s,i)=>`<button class="tab${i?'':' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.k]}</svg>${s.n}</button>`).join(''));
+const spark=()=>{let y=30,d='M0 30';for(let x=15;x<=120;x+=15){y=Math.max(4,Math.min(30,y-4-Math.random()*8+Math.random()*5));d+=`L${x} ${y.toFixed(0)}`}return d};
+function show(i){cur=i;const s=S[i];$('ind').style.insetInlineStart=`calc(${i*25}% + 6px)`;
+$('tabs').style.setProperty('--c1',s.c1);$('tabs').style.setProperty('--c2',s.c2);
+[...document.querySelectorAll('.tab')].forEach((t,j)=>t.classList.toggle('on',j===i));
+$('grid').innerHTML=s.items.map((it,j)=>`<article class="card" style="--c:${s.col};--i:${j}"><div class="top"><div class="av">${s.n[0]}</div><div><h3>${it[0]}</h3><small>${s.n}</small></div></div>
+<div class="ms"><span>${it[1]}</span><span>${it[2]}</span></div>
+<div class="spark"><svg viewBox="0 0 120 34" preserveAspectRatio="none"><path d="${spark()}"/></svg></div>
+<div class="row"><div class="pr"><b>${it[3]}</b><small>تومان</small></div><button class="buy" data-j="${j}">خرید</button></div></article>`).join('')}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>show(+t.dataset.i));
 show(0);
-
-/* گالری نمایش عکس‌های اضافی با کلیک روی عکس اصلی */
-function openGallery(idx) {
-  const it = currentList[idx];
-  if (!it) return;
-  const allImgs = [it.mainImage, ...it.extraImages].filter(Boolean);
-  $('galTitle').textContent = it.name;
-  $('galMain').src = allImgs[0] || FALLBACK_IMG;
-
-  $('galThumbs').innerHTML = allImgs.map((url, k) =>
-    `<img src="${url}" class="${k === 0 ? 'active' : ''}" data-src="${url}" alt="تصویر ${k + 1}" onerror="this.src='${FALLBACK_IMG}'">`
-  ).join('');
-
-  $('galThumbs').querySelectorAll('img').forEach(imgEl => {
-    imgEl.onclick = () => {
-      $('galMain').src = imgEl.dataset.src;
-      $('galThumbs').querySelectorAll('img').forEach(x => x.classList.remove('active'));
-      imgEl.classList.add('active');
-    };
-  });
-
-  $('galOv').classList.add('show');
-  $('galOv').setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeGallery() {
-  $('galOv').classList.remove('show');
-  $('galOv').setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-$('grid').addEventListener('click', e => {
-  const thumb = e.target.closest('.thumb-wrap');
-  if (thumb) {
-    openGallery(+thumb.dataset.idx);
-    return;
-  }
-
-  const b = e.target.closest('.buy');
-  if (!b) return;
-  last = b;
-  const s = S[cur];
-  const it = currentList[+b.dataset.j];
-  if (!it) return;
-
-  activeCard = it.cardNumber || DEFAULT_CARD;
-  activeRid = it.ownerId || DEFAULT_RID;
-
-  $('md').style.setProperty('--c', s.col);
-  $('mt').textContent = it.name;
-  $('ms').textContent = `${s.n}${it.cardName ? ' · به نام: ' + it.cardName : ''}`;
-  $('mn').innerHTML = it.description
-    ? `${it.description}<br><small style="color:var(--mute)">برای خرید، مبلغ را واریز و رسید را در روبیکا ارسال کنید.</small>`
-    : 'برای خرید، مبلغ را به <b>شماره کارت</b> زیر واریز کنید و سپس <b>رسید</b> را از طریق روبیکا به <b>آیدی</b> زیر بفرستید.';
-
-  $('pp').textContent = it.price;
-  $('cd').textContent = activeCard;
-  $('rid').textContent = activeRid;
-  $('ov').classList.add('show');
-  $('ov').setAttribute('aria-hidden', 'false');
-  $('x').focus();
-  document.body.style.overflow = 'hidden';
-});
-
-$('galClose').onclick = closeGallery;
-$('galOv').onclick = e => { if (e.target === $('galOv')) closeGallery(); };
-
-/* modal خرید */
+/* modal */
 let last;
-const close = () => {
-  $('ov').classList.remove('show');
-  $('ov').setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  last && last.focus();
-};
-$('x').onclick = close;
-$('ov').onclick = e => { if (e.target === $('ov')) close(); };
-addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    close();
-    closeGallery();
-  }
-});
-
-let tt;
-const say = m => {
-  const t = $('toast');
-  t.textContent = m;
-  t.classList.add('show');
-  clearTimeout(tt);
-  tt = setTimeout(() => t.classList.remove('show'), 1800);
-};
-
-document.querySelectorAll('.cp').forEach(b => b.onclick = async () => {
-  const v = b.dataset.k === 'card' ? activeCard.replace(/-/g, '') : activeRid;
-  try {
-    await navigator.clipboard.writeText(v);
-  } catch (_) {
-    const a = document.createElement('textarea');
-    a.value = v;
-    document.body.appendChild(a);
-    a.select();
-    try { document.execCommand('copy'); } catch (__) {}
-    a.remove();
-  }
-  b.classList.add('ok');
-  b.textContent = 'کپی شد ✓';
-  say('کپی شد');
-  setTimeout(() => {
-    b.classList.remove('ok');
-    b.textContent = 'کپی';
-  }, 1500);
-});
+$('grid').addEventListener('click',e=>{const b=e.target.closest('.buy');if(!b)return;last=b;const s=S[cur],it=s.items[+b.dataset.j];
+$('md').style.setProperty('--c',s.col);$('mt').textContent=it[0];$('ms').textContent=`${s.n} · ${it[1]} · ${it[2]}`;
+$('mn').innerHTML='برای خرید، مبلغ را به <b>شماره کارت</b> زیر واریز کنید و سپس <b>رسید</b> را از طریق روبیکا به <b>آیدی</b> زیر بفرستید.';
+$('pp').textContent=it[3]+' تومان';$('cd').textContent=CARD;$('rid').textContent=RID;
+$('ov').classList.add('show');$('ov').setAttribute('aria-hidden','false');$('x').focus();document.body.style.overflow='hidden'});
+const close=()=>{$('ov').classList.remove('show');$('ov').setAttribute('aria-hidden','true');document.body.style.overflow='';last&&last.focus()};
+$('x').onclick=close;$('ov').onclick=e=>{if(e.target===$('ov'))close()};addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+let tt;const say=m=>{const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800)};
+document.querySelectorAll('.cp').forEach(b=>b.onclick=async()=>{const v=b.dataset.k==='card'?CARD.replace(/-/,''):RID;
+try{await navigator.clipboard.writeText(v)}catch(_){const a=document.createElement('textarea');a.value=v;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(__){}a.remove()}
+b.classList.add('ok');b.textContent='کپی شد ✓';say('کپی شد');setTimeout(()=>{b.classList.remove('ok');b.textContent='کپی'},1500)});
 </script>
 </body>
-</html>
+</html> 
