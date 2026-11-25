@@ -228,62 +228,47 @@ $('tabs').insertAdjacentHTML('beforeend', S.map((s, i) =>
   `<button class="tab${i ? '' : ' on'}" role="tab" data-i="${i}"><svg viewBox="0 0 24 24">${IC[s.key]}</svg>${s.name}</button>`
 ).join(''));
 
-function pickFirst(val, fallback = '') {
-  if (val === undefined || val === null || val === '') return fallback;
-  return val;
-}
-
-function normalizeExtraImages(rawExtra) {
-  if (!rawExtra) return [];
-  if (Array.isArray(rawExtra)) return rawExtra.filter(Boolean);
-  if (typeof rawExtra === 'object') return Object.values(rawExtra).filter(Boolean);
-  return [];
-}
-
 function normalizeItems(rawObj) {
   if (!rawObj || typeof rawObj !== 'object') return [];
-  const source = Array.isArray(rawObj)
-    ? rawObj.map((val, idx) => [String(idx), val])
-    : Object.entries(rawObj);
-
-  return source
-    .filter(([, val]) => val && typeof val === 'object')
+  return Object.entries(rawObj)
     .map(([id, val]) => {
-      const extra = normalizeExtraImages(
-        pickFirst(val.extraImages, pickFirst(val.extra_images, pickFirst(val.gallery, val.images)))
-      );
-      const mainImage = pickFirst(
-        val.mainImage,
-        pickFirst(val.main_image, pickFirst(val.image, pickFirst(val.img, pickFirst(val.photo, ''))))
-      );
+      const extra = Array.isArray(val?.extraImages)
+        ? val.extraImages.filter(Boolean)
+        : (val?.extraImages && typeof val.extraImages === 'object'
+            ? Object.values(val.extraImages).filter(Boolean)
+            : []);
+      const mainImage = val?.mainImage || '';
       const allImages = [mainImage, ...extra].filter(Boolean);
 
       return {
-        id: pickFirst(val.id, id),
-        name: pickFirst(val.name, pickFirst(val.title, pickFirst(val.prodName, 'بدون عنوان'))),
-        price: pickFirst(val.price, pickFirst(val.amount, pickFirst(val.cost, 'توافقی'))),
-        description: pickFirst(val.description, pickFirst(val.desc, pickFirst(val.details, ''))),
+        id,
+        name: val?.name || 'بدون عنوان',
+        price: val?.price ?? 'توافقی',
+        description: val?.description || '',
         mainImage,
         extraImages: extra,
         allImages,
-        cardNumber: pickFirst(val.cardNumber, pickFirst(val.card_number, pickFirst(val.card, ''))),
-        cardName: pickFirst(val.cardName, pickFirst(val.card_name, pickFirst(val.cardHolder, pickFirst(val.card_holder, '')))),
-        ownerId: pickFirst(val.ownerId, pickFirst(val.owner_id, pickFirst(val.sellerId, pickFirst(val.seller_id, pickFirst(val.username, ''))))),
-        updatedAt: Number(pickFirst(val.updatedAt, pickFirst(val.updated_at, pickFirst(val.createdAt, pickFirst(val.timestamp, 0))))) || 0
+        cardNumber: val?.cardNumber || '',
+        cardName: val?.cardName || '',
+        ownerId: val?.ownerId || '',
+        updatedAt: Number(val?.updatedAt) || 0
       };
     })
     .sort((a, b) => b.updatedAt - a.updatedAt);
 }
 
+// دریافت مستقیم از همان آدرسی که پنل مدیریت استفاده می‌کند
 async function fetchSectionFromApi(sectionKey) {
-  const res = await fetch(`/api/listings?section=${encodeURIComponent(sectionKey)}`);
+  const res = await fetch(`/api/db?category=${encodeURIComponent(sectionKey)}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const json = await res.json();
-  if (json && typeof json === 'object' && 'ok' in json && !json.ok) {
-    throw new Error(json.error || 'API error');
+  const data = await res.json();
+  if (data && typeof data === 'object' && 'ok' in data && data.ok === false) {
+    throw new Error(data.error || 'DB error');
   }
-  const rawItems = (json && typeof json === 'object' && 'items' in json) ? json.items : json;
-  return normalizeItems(rawItems);
+  const rawMap = (data && typeof data === 'object' && 'items' in data && data.items && typeof data.items === 'object')
+    ? data.items
+    : data;
+  return normalizeItems(rawMap);
 }
 
 function renderCards(s, items) {
@@ -319,7 +304,7 @@ function renderCards(s, items) {
           ${it.ownerId ? `<span>${escapeHtml(it.ownerId)}</span>` : ''}
         </div>
         <div class="row">
-          <div class="pr"><b>${escapeHtml(String(it.price))}</b><small>تومان</small></div>
+          <div class="pr"><b>${escapeHtml(String(it.price))}</b></div>
           <button class="buy" data-j="${j}">خرید</button>
         </div>
       </article>
@@ -441,7 +426,7 @@ function openBuyModal(item, sec) {
     id: item.ownerId || ''
   };
 
-  $('pp').textContent = `${item.price} تومان`;
+  $('pp').textContent = `${item.price}`;
   $('cname').textContent = item.cardName || 'ثبت نشده';
   $('cd').textContent = item.cardNumber || 'ثبت نشده';
   $('rid').textContent = item.ownerId || 'ثبت نشده';
