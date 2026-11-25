@@ -14,6 +14,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -32,7 +33,10 @@ export default async function handler(req, res) {
     : `${FIREBASE_DB_URL}/${safeCat}.json`;
 
   try {
-    const fetchOptions = { method: req.method };
+    const fetchOptions = {
+      method: req.method,
+      cache: 'no-store'
+    };
 
     if (req.method === 'POST' || req.method === 'PUT') {
       fetchOptions.headers = { 'Content-Type': 'application/json' };
@@ -44,14 +48,28 @@ export default async function handler(req, res) {
 
     const fbRes = await fetch(targetUrl, fetchOptions);
     const text = await fbRes.text();
-    const data = text ? JSON.parse(text) : null;
+
+    let data = null;
+    if (text) {
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = text;
+      }
+    }
 
     if (!fbRes.ok) {
-      return res.status(fbRes.status).json({ error: 'خطا از سمت فایربیس', details: data });
+      return res.status(fbRes.status).json({
+        error: 'خطا از سمت فایربیس',
+        details: data
+      });
     }
 
     return res.status(200).json(data);
   } catch (err) {
-    return res.status(500).json({ error: 'خطا در ارتباط با فایربیس از طریق ورسل', details: err.message });
+    return res.status(500).json({
+      error: 'خطا در ارتباط با فایربیس از طریق ورسل',
+      details: err.message
+    });
   }
 }
