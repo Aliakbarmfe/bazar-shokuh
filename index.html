@@ -63,6 +63,27 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .dash{stroke-dasharray:6 8;animation:da 1.2s linear infinite}
 @keyframes da{to{stroke-dashoffset:-28}}
 
+/* بخش اطلاعات بازار شکوه زیر هدر */
+.shokuh-info{max-width:900px;margin:10px auto 28px;padding:0 5vw}
+.shokuh-card{position:relative;border-radius:26px;padding:24px 22px;background:linear-gradient(160deg,#1f1c47d9,#0f0f2ee6);border:1px solid #ffffff1f;box-shadow:0 16px 40px #0000004d;overflow:hidden}
+.shokuh-card::before{content:"";position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--or),var(--pk),var(--vi),var(--te))}
+.shokuh-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.shokuh-head h2{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:900;color:var(--ink)}
+.shokuh-slogan{font-size:.92rem;font-weight:700;color:var(--te);background:#2ee6c514;border:1px solid #2ee6c538;padding:6px 14px;border-radius:999px}
+.shokuh-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.shokuh-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:16px;background:#ffffff0a;border:1px solid #ffffff14;transition:border-color .25s,background .25s}
+.shokuh-item.copyable{cursor:pointer}
+.shokuh-item.copyable:hover{background:#ffffff14;border-color:var(--te)}
+.shokuh-item small{display:block;color:var(--mute);font-size:.78rem;margin-bottom:2px}
+.shokuh-item b{display:block;font-size:.98rem;font-weight:900;color:var(--ink)}
+.shokuh-item b.ltr{direction:ltr;text-align:right;unicode-bidi:plaintext}
+.shokuh-copy-tag{flex:none;font-size:.78rem;font-weight:700;padding:5px 11px;border-radius:10px;background:#2ee6c51f;color:var(--te);border:1px solid #2ee6c544;transition:background .25s,color .25s}
+.shokuh-item.copied .shokuh-copy-tag{background:var(--or);color:#1a0b00;border-color:var(--or)}
+.shokuh-footer{margin-top:18px;padding-top:16px;border-top:1px solid #ffffff14;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.shokuh-note{color:var(--mute);font-size:.9rem;font-weight:700}
+.shokuh-group-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:15px;text-decoration:none;font-weight:900;font-size:.98rem;color:#fff;background:linear-gradient(110deg,var(--vi),var(--pk),var(--or));background-size:200% 100%;box-shadow:0 8px 24px #ff3d8138;transition:transform .3s var(--ease),background-position .4s ease}
+.shokuh-group-btn:hover{transform:translateY(-2px);background-position:100% 0}
+
 .tick{overflow:hidden;direction:ltr;background:linear-gradient(90deg,var(--vi),var(--pk),var(--or));transform:skewY(-1deg) translateZ(0);margin:6px 0;contain:content}
 .track{display:flex;width:max-content;will-change:transform;animation:mq 28s linear infinite}.track span{padding:11px 26px;font-weight:900;white-space:nowrap}
 @keyframes mq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
@@ -151,7 +172,7 @@ textarea.inp{min-height:85px;resize:vertical}
 .del-btn{background:#ff3d8126;color:#ff3d81}
 
 .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translate3d(-50%,140px,0);background:var(--te);color:#06221d;font-weight:700;padding:11px 22px;border-radius:12px;will-change:transform;transition:transform .35s var(--ease);z-index:99}.toast.show{transform:translate3d(-50%,0,0)}
-@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}.p-img{aspect-ratio:16/10;max-height:200px}.p-body{padding:15px 16px}.p-title{font-size:1.08rem}}
+@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.shokuh-rows{grid-template-columns:1fr}.shokuh-group-btn{width:100%}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}.p-img{aspect-ratio:16/10;max-height:200px}.p-body{padding:15px 16px}.p-title{font-size:1.08rem}}
 </style>
 </head>
 <body>
@@ -189,6 +210,49 @@ textarea.inp{min-height:85px;resize:vertical}
 <g class="nd"><circle cx="320" cy="300" r="30" fill="#ffb347"/><path d="M304 292h32l-3 22h-26zM310 292q0-10 10-10t10 10" fill="none" stroke="#3a2100" stroke-width="3"/></g>
 </svg></div>
 </header>
+
+<section class="shokuh-info" aria-label="اطلاعات بازار شکوه">
+  <div class="shokuh-card">
+    <div class="shokuh-head">
+      <h2>اطلاعات بازار شکوه</h2>
+      <span class="shokuh-slogan">سال‌ها اساده‌ایم برای روزهای بزرگتر</span>
+    </div>
+    <div class="shokuh-rows">
+      <div class="shokuh-item copyable" data-copy="@BaZaR_ShoKuH" role="button" tabindex="0">
+        <div>
+          <small>بازار شکوه</small>
+          <b class="ltr">@BaZaR_ShoKuH</b>
+        </div>
+        <span class="shokuh-copy-tag">کپی</span>
+      </div>
+      <div class="shokuh-item copyable" data-copy="@VaSeTeH_ShoKuH" role="button" tabindex="0">
+        <div>
+          <small>واسطه‌های شکوه</small>
+          <b class="ltr">@VaSeTeH_ShoKuH</b>
+        </div>
+        <span class="shokuh-copy-tag">کپی</span>
+      </div>
+      <div class="shokuh-item copyable" data-copy="@Mr_Shah_Amin" role="button" tabindex="0">
+        <div>
+          <small>ارتباط با مدیر</small>
+          <b class="ltr">@Mr_Shah_Amin</b>
+        </div>
+        <span class="shokuh-copy-tag">کپی</span>
+      </div>
+      <div class="shokuh-item copyable" data-copy="09304386292" role="button" tabindex="0">
+        <div>
+          <small>پاسخگویی ۲۴ ساعته</small>
+          <b class="ltr">09304386292</b>
+        </div>
+        <span class="shokuh-copy-tag">کپی</span>
+      </div>
+    </div>
+    <div class="shokuh-footer">
+      <span class="shokuh-note">سال‌ها اساده‌ایم برای روزهای بزرگتر</span>
+      <a class="shokuh-group-btn" href="https://rubika.ir/joing/BBGHIGGFJ0OOGLZUKGXXDXBVGETTPBZQ" target="_blank" rel="noopener noreferrer">ورود به گروه معاملاتی</a>
+    </div>
+  </div>
+</section>
 
 <div class="tick" aria-hidden="true"><div class="track" id="track"></div></div>
 
@@ -334,6 +398,43 @@ const say = m => {
   tt = setTimeout(() => t.classList.remove('show'), 2200);
 };
 
+async function copyPlain(val) {
+  try {
+    await navigator.clipboard.writeText(val);
+  } catch (_) {
+    const a = document.createElement('textarea');
+    a.value = val;
+    document.body.appendChild(a);
+    a.select();
+    document.execCommand('copy');
+    a.remove();
+  }
+}
+
+// کپی اطلاعات بازار شکوه با کلیک روی هر آیتم
+document.querySelectorAll('.shokuh-item.copyable').forEach(el => {
+  const triggerCopy = async () => {
+    const val = el.getAttribute('data-copy') || '';
+    const tag = el.querySelector('.shokuh-copy-tag');
+    await copyPlain(val);
+    el.classList.add('copied');
+    if (tag) tag.textContent = 'کپی شد ✓';
+    say('کپی شد');
+    clearTimeout(el._cpTimer);
+    el._cpTimer = setTimeout(() => {
+      el.classList.remove('copied');
+      if (tag) tag.textContent = 'کپی';
+    }, 1500);
+  };
+  el.addEventListener('click', triggerCopy);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      triggerCopy();
+    }
+  });
+});
+
 function openModal(id) {
   $(id).classList.add('show');
   $(id).setAttribute('aria-hidden', 'false');
@@ -472,16 +573,7 @@ function openProductDetail(catKey, prodId) {
 }
 
 async function copyText(val, btn) {
-  try {
-    await navigator.clipboard.writeText(val);
-  } catch (_) {
-    const a = document.createElement('textarea');
-    a.value = val;
-    document.body.appendChild(a);
-    a.select();
-    document.execCommand('copy');
-    a.remove();
-  }
+  await copyPlain(val);
   btn.classList.add('ok');
   btn.textContent = 'کپی شد ✓';
   say('کپی شد');
