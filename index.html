@@ -66,15 +66,22 @@ h1{font-size:clamp(2.3rem,6.6vw,5rem);font-weight:900;line-height:1.15;margin-bo
 .tab svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease)}
 .tab.on{color:#fff}.tab.on svg{transform:scale(1.2) rotate(-6deg)}
 
-/* کارت محصول ساده شده: فقط عکس و قیمت */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.p-card{--c:var(--or);position:relative;border-radius:22px;background:linear-gradient(170deg,#1b1a3d,#101030);border:1px solid #ffffff1a;overflow:hidden;cursor:pointer;animation:in .6s var(--ease) backwards;animation-delay:calc(var(--i)*60ms);transition:transform .4s var(--ease),border-color .3s}
-@keyframes in{from{opacity:0;transform:translateY(30px) scale(.95)}}
-.p-card:hover{transform:translateY(-6px);border-color:var(--c)}
-.p-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#141333}
-.p-price-bar{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#0d0d26}
-.p-price-bar b{font-size:1.15rem;color:var(--ink)}
-.p-price-bar small{color:var(--te);font-weight:700}
+/* کارت محصول شیک: تک‌ستونه، عکس کنترل‌شده، نام، قیمت و دکمه خرید */
+.grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:780px;margin:auto}
+.p-card{--c:var(--or);position:relative;border-radius:24px;background:linear-gradient(165deg,#1d1b44,#10102e);border:1px solid #ffffff1c;overflow:hidden;cursor:pointer;animation:in .6s var(--ease) backwards;animation-delay:calc(var(--i)*60ms);transition:transform .4s var(--ease),border-color .3s,box-shadow .35s;box-shadow:0 12px 32px #00000045}
+@keyframes in{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.p-card:hover{transform:translateY(-4px);border-color:var(--c);box-shadow:0 18px 40px #00000070}
+.p-img{width:100%;aspect-ratio:16/9;max-height:250px;object-fit:cover;display:block;background:#141333;border-bottom:1px solid #ffffff14}
+.p-body{padding:18px 20px;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#151436,#0d0d26)}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.p-title{font-size:1.22rem;font-weight:900;color:var(--ink);line-height:1.45}
+.p-badge{font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:999px;background:#ffffff12;border:1px solid #ffffff1f;color:var(--te);white-space:nowrap}
+.p-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:12px;border-top:1px solid #ffffff12;flex-wrap:wrap}
+.p-price-box{display:flex;align-items:baseline;gap:6px}
+.p-price-box b{font-size:1.25rem;font-weight:900;color:#fff}
+.p-price-box small{color:var(--te);font-weight:700;font-size:.88rem}
+.p-buy-btn{border:0;border-radius:14px;padding:10px 22px;font-weight:900;font-size:.95rem;color:#1a0b00;background:linear-gradient(110deg,var(--or),#ffb347);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s}
+.p-buy-btn:hover{transform:scale(1.04);box-shadow:0 6px 20px #ff7a1a55}
 .empty-msg{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--mute);background:#ffffff08;border-radius:20px;border:1px dashed #ffffff1f}
 
 .how{max-width:900px;margin:auto;padding:60px 6vw 90px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
@@ -102,6 +109,8 @@ footer{text-align:center;color:var(--mute);padding:34px 5vw calc(44px + env(safe
 .fld{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;background:#ffffff0f;margin-bottom:10px}
 .fld small{display:block;color:var(--mute);font-size:.75rem}.fld b{font-size:1rem;letter-spacing:.5px;display:block;word-break:break-all}
 .cp{flex:none;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;background:var(--te);color:#06221d;transition:.3s}.cp.ok{background:var(--or);color:#1a0b00}
+.pay-notice{margin-top:12px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#2ee6c516,#8a5cff18);border:1px solid #2ee6c544;color:#f3f1ff;font-size:.88rem;line-height:1.8}
+.pay-notice strong{display:block;color:var(--te);font-size:.94rem;margin-bottom:4px}
 
 /* فرم‌ها و ورودی‌ها */
 .inp-grp{margin-bottom:12px}
@@ -133,7 +142,7 @@ textarea.inp{min-height:85px;resize:vertical}
 .del-btn{background:#ff3d8126;color:#ff3d81}
 
 .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;translate:-50% 140px;background:var(--te);color:#06221d;font-weight:700;padding:11px 22px;border-radius:12px;transition:translate .4s var(--ease);z-index:99}.toast.show{translate:-50% 0}
-@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:96px;min-height:auto}.hero p{margin-inline:auto}.stats{justify-content:center}.viz{order:-1;width:min(80%,320px)}.tab{font-size:.82rem}.tab svg{width:26px;height:26px}.how{grid-template-columns:1fr}.p-img{aspect-ratio:16/10;max-height:200px}.p-body{padding:15px 16px}.p-title{font-size:1.08rem}}
 </style>
 </head>
 <body>
@@ -200,6 +209,10 @@ textarea.inp{min-height:85px;resize:vertical}
     <div class="fld"><div><small>شماره کارت</small><b id="cd" style="direction:ltr;text-align:right"></b></div><button class="cp" id="cpCard">کپی</button></div>
     <div class="fld"><div><small>نام صاحب کارت</small><b id="cName"></b></div></div>
     <div class="fld"><div><small>آیدی روبیکا</small><b id="rid" style="direction:ltr;text-align:right"></b></div><button class="cp" id="cpId">کپی</button></div>
+    <div class="pay-notice">
+      <strong>راهنمای تکمیل خرید</strong>
+      برای نهایی‌سازی خرید، لطفاً مبلغ آگهی را به شماره کارت اعلام‌شده واریز نمایید و پس از انجام تراکنش، تصویر رسید پرداخت را به آیدی روبیکای درج‌شده ارسال کنید تا هماهنگی و تحویل در کوتاه‌ترین زمان انجام شود.
+    </div>
   </div>
 </div>
 
@@ -385,7 +398,7 @@ async function loadProducts() {
   }
 }
 
-// نمایش محصولات به کاربر (فقط عکس اصلی و قیمت)
+// نمایش محصولات به کاربر (هر ردیف یک محصول، همراه با نام، قیمت و دکمه خرید)
 function renderUserGrid(i) {
   curTab = i;
   const s = CATS[i];
@@ -405,9 +418,18 @@ function renderUserGrid(i) {
   $('grid').innerHTML = entries.map(([id, item], idx) => `
     <article class="p-card" style="--c:${s.col};--i:${idx}" onclick="openProductDetail('${s.k}','${id}')">
       <img class="p-img" src="${item.mainImg || ''}" alt="${item.name || ''}" loading="lazy">
-      <div class="p-price-bar">
-        <b>${item.price}</b>
-        <small>تومان</small>
+      <div class="p-body">
+        <div class="p-top">
+          <div class="p-title">${item.name || 'بدون عنوان'}</div>
+          <span class="p-badge">${s.n}</span>
+        </div>
+        <div class="p-bottom">
+          <div class="p-price-box">
+            <b>${item.price}</b>
+            <small>تومان</small>
+          </div>
+          <button type="button" class="p-buy-btn" onclick="event.stopPropagation();openProductDetail('${s.k}','${id}')">خرید و اطلاعات بیشتر</button>
+        </div>
       </div>
     </article>
   `).join('');
